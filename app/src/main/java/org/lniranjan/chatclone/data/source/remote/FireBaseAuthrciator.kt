@@ -1,7 +1,7 @@
 package org.lniranjan.chatclone.data.source.remote
 
-import org.lniranjan.chatclone.domain.modal.User
-import org.lniranjan.chatclone.domain.repo.Authenciation
+import org.lniranjan.domain.domain.modal.User
+import org.lniranjan.domain.domain.repo.Authenciation
 
 class FireBaseAuthrciator: Authenciation {
     override fun login(user: User) {

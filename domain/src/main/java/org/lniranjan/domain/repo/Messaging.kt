@@ -1,6 +1,6 @@
 package org.lniranjan.domain.repo
 
-import org.lniranjan.domain.modal.Message
+import org.lniranjan.domain.entity.Message
 
 interface Messaging {
 

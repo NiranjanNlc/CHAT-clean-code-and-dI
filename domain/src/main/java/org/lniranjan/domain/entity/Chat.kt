@@ -1,4 +1,4 @@
-package org.lniranjan.domain.modal
+package org.lniranjan.domain.entity
 
 data class Chat(val lastTimeStamp: Long? =null,
                 var chatingPerson :User?=null,

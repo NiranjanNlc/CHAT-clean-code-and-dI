@@ -1,4 +1,4 @@
-package org.lniranjan.domain.modal
+package org.lniranjan.domain.entity
 
 import java.util.*
 

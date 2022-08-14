@@ -1,4 +1,4 @@
-package org.lniranjan.domain.modal
+package org.lniranjan.domain.entity
 
 data class ProfileDetail(val profilePic:String?=null,
                          var bio:String?=null,

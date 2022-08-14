@@ -1,6 +1,6 @@
 package org.lniranjan.domain.repo
 
-import org.lniranjan.domain.modal.User
+import org.lniranjan.domain.entity.User
 
 interface Authenciation {
     fun login(user: User)

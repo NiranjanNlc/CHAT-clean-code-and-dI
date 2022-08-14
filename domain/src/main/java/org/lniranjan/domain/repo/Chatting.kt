@@ -1,7 +1,7 @@
 package org.lniranjan.domain.repo
 
-import org.lniranjan.domain.modal.Chat
-import org.lniranjan.domain.modal.User
+import org.lniranjan.domain.entity.Chat
+import org.lniranjan.domain.entity.User
 
 interface Chatting {
 

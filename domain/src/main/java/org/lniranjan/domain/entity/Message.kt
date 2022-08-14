@@ -1,4 +1,4 @@
-package org.lniranjan.domain.modal
+package org.lniranjan.domain.entity
 
 data class Message( val emoji: String?= null,
                         val text: String?=null,

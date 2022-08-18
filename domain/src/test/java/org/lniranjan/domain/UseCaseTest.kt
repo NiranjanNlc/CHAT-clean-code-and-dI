@@ -1,9 +1,12 @@
 package org.lniranjan.domain
 
+import android.util.Log
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -31,6 +34,13 @@ class UseCaseTest {
         }
     }
 
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testExecuteSuccess() = runBlockingTest {
+        val result = useCase.execute(request).first()
+        println("result $result   for $response ")
+        assertEquals(Result.success(response), result)
+    }
 
     @Test
     fun addition_isCorrect() {

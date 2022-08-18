@@ -6,6 +6,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 import org.lniranjan.domain.usecases.UseCase
+import org.mockito.kotlin.mock
 
 class UseCaseTest {
 

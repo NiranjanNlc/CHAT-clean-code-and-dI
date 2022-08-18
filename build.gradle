@@ -6,7 +6,7 @@ buildscript {
                 versions = [
                         mockito  : "4.0.0"
                 ]
-                test = [
+                testing = [
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}"
                 ]
             }

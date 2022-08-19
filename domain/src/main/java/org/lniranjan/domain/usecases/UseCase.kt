@@ -16,7 +16,7 @@ abstract class UseCase<I: UseCase.Request, O: UseCase.Response>(private val conf
         .catch {
             emit(Result.failure(UseCaseException.createFromThrowable(it)))
         }
-    internal abstract fun process(request:I): Flow<O>
+     abstract fun process(request:I): Flow<O>
     class Configuration(val dispatcher: CoroutineDispatcher)
     interface Request
     interface Response

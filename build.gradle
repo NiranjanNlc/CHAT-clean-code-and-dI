@@ -4,10 +4,12 @@ buildscript {
     ext
             {
                 versions = [
-                        mockito  : "4.0.0"
+                        mockito  : "4.0.0",
+                        junit   : "4.13.2"
                 ]
                 testing = [
-                        mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}"
+                        mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
+                        junit: "junit:junit:${versions.junit}"
                 ]
             }
 }

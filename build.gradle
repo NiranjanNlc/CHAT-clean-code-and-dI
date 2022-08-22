@@ -5,11 +5,16 @@ buildscript {
             {
                 versions = [
                         mockito  : "4.0.0",
-                        junit   : "4.13.2"
+                        junit   : "4.13.2",
+                        nav : "2.5.1"
                 ]
                 testing = [
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
                         junit: "junit:junit:${versions.junit}"
+                ]
+                navigation =[
+                        fragment :"androidx.navigation:navigation-fragment-ktx:${versions.nav}",
+                        ui :"androidx.navigation:navigation-ui-ktx:${versions.nav}"
                 ]
             }
 }

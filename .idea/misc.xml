@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_facebook.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/ic_twitter.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/background_xml.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_chat_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_messaging.xml" value="0.1" />
       </map>
     </option>
   </component>

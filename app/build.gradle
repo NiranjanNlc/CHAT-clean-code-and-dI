@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+
 }
 
 android {
@@ -42,5 +45,9 @@ dependencies {
     //navigation
     implementation navigation.fragment
     implementation navigation.ui
+    //hilt
+    implementation di.hilt
+    kapt di.hiltKapt
+
 
 }

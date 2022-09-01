@@ -1,7 +1,8 @@
 package org.lniranjan.chatclone
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class ChatApp: Application() {
 
-}
+@HiltAndroidApp
+class ChatApp: Application()

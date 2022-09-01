@@ -6,7 +6,8 @@ buildscript {
                 versions = [
                         mockito  : "4.0.0",
                         junit   : "4.13.2",
-                        nav : "2.5.1"
+                        nav : "2.5.1",
+                        hilt: "2.38.1"
                 ]
                 testing = [
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
@@ -16,7 +17,14 @@ buildscript {
                         fragment :"androidx.navigation:navigation-fragment-ktx:${versions.nav}",
                         ui :"androidx.navigation:navigation-ui-ktx:${versions.nav}"
                 ]
+                di =[
+                        hilt: "com.google.dagger:hilt-android:${versions.hilt}",
+                        hiltKapt: "com.google.dagger:hilt-compiler:${versions.hilt}"
+                ]
             }
+    dependencies {
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38.1'
+    }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {

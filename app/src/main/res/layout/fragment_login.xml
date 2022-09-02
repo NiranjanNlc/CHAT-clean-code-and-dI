@@ -96,9 +96,9 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                 <com.google.android.material.textfield.TextInputLayout
-                    android:hint="Email or User Name"
+                android:layout_height="wrap_content"> 
+                 <com.google.android.material.textfield.TextInputLayout  
+                    android:hint="Email"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="5dp"
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content">
 
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout 
                     android:hint="Email"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
@@ -255,9 +255,10 @@
                 android:layout_gravity="center"
                 app:shapeAppearanceOverlay="@style/Button5"
                 app:backgroundTint="@color/pinkColor"
-                android:layout_width="match_parent"
+                android:layout_width="match_parent" 
                 android:layout_height="wrap_content"
                 android:onClick="@{(v)-> fragment.submit()}"/>
+ 
 
             <TextView
                 android:text="OR"

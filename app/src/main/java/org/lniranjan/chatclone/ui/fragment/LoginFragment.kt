@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.view.ViewGroup 
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -13,13 +13,14 @@ import org.lniranjan.chatclone.databinding.FragmentLoginBinding
 import org.lniranjan.chatclone.ui.viewmodel.AuthViewModel
 import org.lniranjan.chatclone.utils.toast
 import org.lniranjan.domain.entity.User
+ 
 
 
 class LoginFragment : Fragment() {
 
-    private lateinit var bindind : FragmentLoginBinding
+    private lateinit var bindind : FragmentLoginBinding 
     private val viewModel by viewModels<AuthViewModel>()
-
+ 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,8 +54,7 @@ class LoginFragment : Fragment() {
         }
         bindind.signUpLayout.visibility = View.VISIBLE
         bindind.logInLayout.visibility= View.GONE
-    }
-
+    } 
     public fun submit ()
     {
         val email =bindind.eMail.text.toString()
@@ -73,5 +73,5 @@ class LoginFragment : Fragment() {
             else
                 toast { "Password do not match " }
          }
-    }
+    } 
  }

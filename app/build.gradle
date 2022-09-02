@@ -42,6 +42,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(path: ':domain')
     testImplementation testing.junit
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -51,6 +52,9 @@ dependencies {
     //hilt
     implementation di.hilt
     kapt di.hiltKapt
+    implementation di.viewModel
+    implementation di.livedata
+    implementation di.fragment
 
 
 }

@@ -2,4 +2,5 @@
 <resources>
     <string name="log_in">Log In</string>
     <string name="signUp">Sighn Up</string>
+    <string name="submit">"Submit "</string>
 </resources>

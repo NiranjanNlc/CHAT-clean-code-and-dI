@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Inspired from https://github.com/farida-techie/LoginPageUi-->
+<layout>
+    <data>
+        <variable
+            name="fragment"
+            type="org.lniranjan.chatclone.ui.fragment.LoginFragment" />
+    </data>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,6 +32,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="38dp"
+        android:foregroundGravity="center_horizontal"
         app:cardUseCompatPadding="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -59,7 +67,9 @@
                     android:background="@drawable/switch_trcks"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v)-> fragment.enableLogin()}"
+                    />
                 <TextView
                     android:id="@+id/signUp"
                     android:text="@string/signUp"
@@ -75,7 +85,9 @@
                     android:textStyle="bold|normal"
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v)-> fragment.enableSignUp()}"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/logInLayout"
@@ -146,7 +158,7 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/singUpLayout"
+                android:id="@+id/signUpLayout"
                 android:background="@color/white"
                 android:padding="25dp"
                 android:visibility="gone"
@@ -233,8 +245,8 @@
 
             </LinearLayout>
             <Button
-                android:id="@+id/singIn"
-                android:text="@string/log_in"
+                android:id="@+id/submit"
+                android:text="@string/submit"
                 android:textSize="17sp"
                 android:textAllCaps="false"
                 android:elevation="15dp"
@@ -292,3 +304,4 @@
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
+</layout>

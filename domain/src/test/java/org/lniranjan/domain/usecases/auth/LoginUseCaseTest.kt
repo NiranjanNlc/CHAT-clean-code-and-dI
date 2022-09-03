@@ -16,15 +16,15 @@ import org.mockito.kotlin.whenever
 * User need toenter the user details 
 * if correct then the return required values 
 * */
-class LoginTest {
+class LoginUseCaseTest {
 
     private val authenciation = mock<Authenciation>()
     private val correctUser =User(mail = "nlc@gmail.com")
-    private val useCase = Login(mock(),authenciation)
+    private val useCase = LoginUseCase(mock(),authenciation)
     private   val userWithIncorrectCredentials :User = correctUser.copy(mail = "jpt@gmail.com" , password = "djdkfakf")
     private   val userWithIncorrectPassword :User=correctUser.copy(password = "jpt@gmail.com" )
     private   val userWithIncorrectEmail :User=correctUser.copy(mail = "jpt@gmail.com" )
-    private   lateinit var request: Login.Request
+    private   lateinit var request: LoginUseCase.Request
 
     @ExperimentalCoroutinesApi
     @Before
@@ -41,31 +41,31 @@ class LoginTest {
     @ExperimentalCoroutinesApi
     @Test
     fun testExampleWithIncorrectCredentials() =runBlockingTest {
-        request = Login.Request(userWithIncorrectCredentials.mail, userWithIncorrectCredentials.password)
+        request = LoginUseCase.Request(userWithIncorrectCredentials.mail, userWithIncorrectCredentials.password)
         val response= useCase.process(request)
-        Assert.assertEquals(Login.Response(false), response.first())
+        Assert.assertEquals(LoginUseCase.Response(false), response.first())
     }
     @ExperimentalCoroutinesApi
     @Test
     fun testExampleWithIncorrectIncorrectEmail() = runBlockingTest {
-        request = Login.Request(userWithIncorrectEmail.mail, userWithIncorrectEmail.password)
+        request = LoginUseCase.Request(userWithIncorrectEmail.mail, userWithIncorrectEmail.password)
         val response= useCase.process(request)
-        Assert.assertEquals(Login.Response(false), response.first()) 
+        Assert.assertEquals(LoginUseCase.Response(false), response.first())
 
     }
 
     @ExperimentalCoroutinesApi
     @Test
     fun testExampleWithIncorrectIncorrectPassword() = runBlockingTest {
-        request = Login.Request(userWithIncorrectPassword.mail, userWithIncorrectPassword.password)
+        request = LoginUseCase.Request(userWithIncorrectPassword.mail, userWithIncorrectPassword.password)
         val response= useCase.process(request)
-        Assert.assertEquals(Login.Response(false), response.first()) 
+        Assert.assertEquals(LoginUseCase.Response(false), response.first())
     }
     @ExperimentalCoroutinesApi
     @Test
     fun testExampleWithCorrectCredintials() = runBlockingTest {
-        request = Login.Request( correctUser.mail,  correctUser.password)
+        request = LoginUseCase.Request( correctUser.mail,  correctUser.password)
         val response= useCase.process(request)
-        Assert.assertEquals(Login.Response(true), response.first()) 
+        Assert.assertEquals(LoginUseCase.Response(true), response.first())
     }
 }

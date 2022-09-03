@@ -6,7 +6,6 @@ import org.lniranjan.domain.entity.Chat
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Chatting
 import org.lniranjan.domain.usecases.UseCase
-import org.lniranjan.domain.usecases.auth.Login
 
 class GetListofChat (
     configuration: Configuration,

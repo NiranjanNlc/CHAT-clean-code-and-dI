@@ -5,10 +5,10 @@ import kotlinx.coroutines.flow.map
 import org.lniranjan.domain.repo.Authenciation
 import org.lniranjan.domain.usecases.UseCase
 
-class Login(
+class LoginUseCase(
     configuration: Configuration,
     private val authenciation: Authenciation
-) : UseCase<Login.Request, Login.Response>(configuration)
+) : UseCase<LoginUseCase.Request, LoginUseCase.Response>(configuration)
 {
 
     data class Request(val email : String, val password : String) : UseCase.Request

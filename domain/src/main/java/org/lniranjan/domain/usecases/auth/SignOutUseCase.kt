@@ -6,14 +6,13 @@ import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Authenciation
 import org.lniranjan.domain.usecases.UseCase
 
-class SignUp  (
+class SignOutUseCase (
     configuration: Configuration,
     private val authenciation: Authenciation
-) : UseCase<SignUp.Request, SignUp.Response>(configuration) {
+) : UseCase<SignOutUseCase.Request, SignOutUseCase.Response>(configuration) {
     data class Request(val user: User) : UseCase.Request
     data class Response(val credentialMatched: Boolean) : UseCase.Response
-
-    override fun process(request: Request): Flow<Response> = authenciation.sighnUp(request.user)
+    override fun process(request: Request): Flow<Response> = authenciation.logout(request.user)
         .map {
             Response(it)
         }

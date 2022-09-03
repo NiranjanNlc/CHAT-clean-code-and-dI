@@ -4,15 +4,14 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup 
-import android.widget.Toast
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import org.lniranjan.chatclone.R
 import org.lniranjan.chatclone.databinding.FragmentLoginBinding
+import org.lniranjan.chatclone.modal.Credentials
 import org.lniranjan.chatclone.ui.viewmodel.AuthViewModel
 import org.lniranjan.chatclone.utils.toast
-import org.lniranjan.domain.entity.User
  
 
 
@@ -64,12 +63,12 @@ class LoginFragment : Fragment() {
         val passw2 = bindind.passwords01.text.toString()
         if(bindind.logInLayout.visibility==View.VISIBLE)
         {
-            viewModel.login(User(mail = email, password = passw))
+            viewModel.login(Credentials(mail = email, password = passw))
         }
         else
         {
           if(passw1.equals(passw2))
-              viewModel.register(User(mail = emails, password = passw1))
+              viewModel.register(Credentials(mail = emails, password = passw1))
             else
                 toast { "Password do not match " }
          }

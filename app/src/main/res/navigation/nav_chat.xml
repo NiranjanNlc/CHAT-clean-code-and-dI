@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="org.lniranjan.chatclone.ui.fragment.SettingFragment"
+        android:name="org.lniranjan.chatclone.ui.fragment.BioFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
         <action

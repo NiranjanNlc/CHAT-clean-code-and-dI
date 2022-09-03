@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.lniranjan.chatclone.R
 import org.lniranjan.chatclone.databinding.FragmentLoginBinding
 import org.lniranjan.chatclone.modal.Credentials
@@ -14,7 +15,7 @@ import org.lniranjan.chatclone.ui.viewmodel.AuthViewModel
 import org.lniranjan.chatclone.utils.toast
  
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var bindind : FragmentLoginBinding 

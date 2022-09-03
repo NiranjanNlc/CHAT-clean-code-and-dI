@@ -6,10 +6,10 @@ import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Chatting
 import org.lniranjan.domain.usecases.UseCase
 
-class GetListofUser(
+class GetListofContacts(
     configuration: Configuration,
     private val chatting: Chatting
-) : UseCase<GetListofUser.Request, GetListofUser.Response>(configuration) {
+) : UseCase<GetListofContacts.Request, GetListofContacts.Response>(configuration) {
     data class Request(val user: User) : UseCase.Request
     data class Response(val userList: List<User>) : UseCase.Response
 

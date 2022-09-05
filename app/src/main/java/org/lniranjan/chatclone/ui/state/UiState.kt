@@ -1,4 +1,4 @@
-package org.lniranjan.chatclone.utils
+package org.lniranjan.chatclone.ui.state
 
 sealed class UiState<out T : Any> {
     object Loading : UiState<Nothing>()

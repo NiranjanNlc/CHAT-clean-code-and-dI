@@ -9,8 +9,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.lniranjan.chatclone.modal.Credentials
-import org.lniranjan.chatclone.ui.userstate.AuthState
-import org.lniranjan.chatclone.ui.userstate.UserState
+import org.lniranjan.chatclone.ui.state.AuthState
+import org.lniranjan.chatclone.ui.state.UserState
+import org.lniranjan.chatclone.utils.EntityMapper
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.usecases.auth.LoginUseCase
 import org.lniranjan.domain.usecases.auth.SignOutUseCase
@@ -21,7 +22,8 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val loginusecase: LoginUseCase,
     private val signOutUseCase: SignOutUseCase,
-    private val signUpUseCase: SignUpUseCase
+    private val signUpUseCase: SignUpUseCase,
+    private val entityMapper: EntityMapper
 ) : ViewModel() {
     private val _user = MutableStateFlow(AuthState())
     val user: StateFlow<AuthState> = _user
@@ -30,23 +32,16 @@ class AuthViewModel @Inject constructor(
 
 
     fun login(credentials: Credentials) {
-        viewModelScope.launch {
-                  loginusecase.process(LoginUseCase.Request(credentials.mail, credentials.password))
-              }
+                  loginusecase.execute(LoginUseCase.Request(credentials.mail, credentials.password))
+                      .map {
+                           entityMapper.convert(it)
+                      }
     }
 
     fun register(credentials: Credentials) {
             viewModelScope.launch {
-                signUpUseCase.process(SignUpUseCase.Request(User(credentials.mail,credentials.password)))
+                signUpUseCase.execute(SignUpUseCase.Request(User(credentials.mail,credentials.password)))
             }
-    }
-
-    fun loggedCredentials() {
-
-    }
-
-    fun getCredentialsData() {
-
     }
 
 

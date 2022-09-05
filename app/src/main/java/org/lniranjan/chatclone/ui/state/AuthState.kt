@@ -1,4 +1,4 @@
-package org.lniranjan.chatclone.ui.userstate
+package org.lniranjan.chatclone.ui.state
 
 import org.lniranjan.chatclone.modal.Credentials
 

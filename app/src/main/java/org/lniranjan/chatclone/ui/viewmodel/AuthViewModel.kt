@@ -7,9 +7,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.lniranjan.chatclone.modal.Credentials
 import org.lniranjan.chatclone.ui.state.AuthState
+import org.lniranjan.chatclone.ui.state.UiState
 import org.lniranjan.chatclone.ui.state.UserState
 import org.lniranjan.chatclone.utils.EntityMapper
 import org.lniranjan.domain.entity.User
@@ -35,6 +37,22 @@ class AuthViewModel @Inject constructor(
                   loginusecase.execute(LoginUseCase.Request(credentials.mail, credentials.password))
                       .map {
                            entityMapper.convert(it)
+                      }.onEach {
+                          when(it)
+                          {
+                              is UiState.Success-> {
+                                  _user.value = AuthState()
+                              }
+                              is UiState.Error -> {
+                                  _user.value = AuthState(error = it.errorMessage)
+                              }
+                              is UiState.Loading ->  {
+                                  _user.value = AuthState(isLoading = true)
+                              }
+                              else -> {
+
+                              }
+                          }
                       }
     }
 

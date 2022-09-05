@@ -15,7 +15,8 @@ class LoginUseCase(
     data class Response(val credentialMatched : Boolean ) : UseCase.Response
 
     override fun process(request: Request): Flow<Response> = authenciation.login(
-                                                        request.email,
-        request.password
-    ).map { Response(it) }
+                                                        request.email,  request.password
+    ).map {
+        Response(it)
+    }
 }

@@ -27,7 +27,12 @@ class LoginFragment : Fragment() {
     ): View? {
         bindind = DataBindingUtil.inflate(inflater,R.layout.fragment_login, container, false)
         bindind.fragment = this
+        setObsever()
         return bindind.root
+    }
+
+    private fun setObsever() {
+
     }
 
     public fun enableLogin() {

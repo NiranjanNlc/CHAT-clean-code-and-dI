@@ -32,6 +32,11 @@ buildscript {
                         storage: 'com.google.firebase:firebase-storage-ktx',
                         auth: 'com.google.firebase:firebase-auth-ktx'
                 ]
+                coroutines = [
+                        core: "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1",
+                        android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1",
+                        test: "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1"
+                ]
             }
     dependencies {
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38.1'

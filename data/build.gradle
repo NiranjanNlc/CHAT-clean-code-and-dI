@@ -31,10 +31,13 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':domain')
     testImplementation  testing.junit
     implementation platform(firebase.bom)
     implementation firebase.analytics
     implementation firebase.database
     implementation firebase.storage
     implementation firebase.auth
+    //coroutines
+    implementation coroutines.core
 }

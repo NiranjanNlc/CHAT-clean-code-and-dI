@@ -35,7 +35,8 @@ buildscript {
                 coroutines = [
                         core: "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1",
                         android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1",
-                        test: "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1"
+                        test: "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1",
+                        firebase: "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0"
                 ]
             }
     dependencies {

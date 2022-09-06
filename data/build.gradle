@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -31,4 +32,9 @@ android {
 
 dependencies {
     testImplementation  testing.junit
+    implementation platform(firebase.bom)
+    implementation firebase.analytics
+    implementation firebase.database
+    implementation firebase.storage
+    implementation firebase.auth
 }

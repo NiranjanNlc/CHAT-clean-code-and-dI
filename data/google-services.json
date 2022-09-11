@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "467775436906",
+    "project_id": "portfolio-46745",
+    "storage_bucket": "portfolio-46745.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467775436906:android:503edb029cb176236df213",
+        "android_client_info": {
+          "package_name": "org.lniranjan.chatclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467775436906-27mba7c2fe4red6j5j92p0idu0tm77c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGFR6-AtnatN9e8ZZnztTNQUctnfWidxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467775436906-27mba7c2fe4red6j5j92p0idu0tm77c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

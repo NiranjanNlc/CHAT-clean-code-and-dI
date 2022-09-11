@@ -4,6 +4,7 @@ package org.lniranjan.chatclone.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -20,7 +21,7 @@ import org.lniranjan.domain.usecases.auth.SignOutUseCase
 import org.lniranjan.domain.usecases.auth.SignUpUseCase
 import javax.inject.Inject
 
-
+@HiltViewModel
 class AuthViewModel @Inject constructor(
     private val loginusecase: LoginUseCase,
     private val signOutUseCase: SignOutUseCase,

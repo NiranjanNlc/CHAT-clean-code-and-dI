@@ -20,4 +20,3 @@ class ProfileImpl( private val firebaseProfile : FireBaseProFile) : Profile {
 
 
 
-}

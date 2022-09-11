@@ -13,6 +13,6 @@ class GetListofContacts(
     data class Request(val user: User) : UseCase.Request
     data class Response(val userList: List<User>) : UseCase.Response
 
-    override suspend fun process(request:Request): Flow<Response> = chatting.getListOfUser()
+    override suspend fun process(request:Request): Flow<Response> = chatting.getListOfUser(request.user.userId)
         .map { Response(it) }
 }

@@ -34,7 +34,7 @@ class AuthViewModel @Inject constructor(
     val userData: StateFlow<UserState> = _userData
 
 
-    fun login(credentials: Credentials) {
+   suspend fun login(credentials: Credentials) {
                   loginusecase.execute(LoginUseCase.Request(credentials.mail, credentials.password))
                       .map {
                            entityMapper.convert(it)

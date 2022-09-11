@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.lniranjan.chatclone.R
 import org.lniranjan.chatclone.databinding.FragmentLoginBinding
 import org.lniranjan.chatclone.modal.Credentials
@@ -69,12 +71,15 @@ class LoginFragment : Fragment() {
         val passw2 = bindind.passwords01.text.toString()
         if(bindind.logInLayout.visibility==View.VISIBLE)
         {
-            viewModel.login(Credentials(mail = email, password = passw))
+            lifecycleScope.launch {
+                viewModel.login(Credentials(mail = email, password = passw))
+
+            }
         }
         else
         {
           if(passw1.equals(passw2))
-              viewModel.register(Credentials(mail = emails, password = passw1))
+              lifecycleScope.launch { viewModel.register(Credentials(mail = emails, password = passw1))}
             else
                 toast { "Password do not match " }
          }

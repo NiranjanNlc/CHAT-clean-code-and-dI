@@ -40,4 +40,11 @@ class FirebaseAuthenciation @Inject constructor(
              null
          }
     }
+
+    fun getUser(): Flow<User> {
+         return flow {
+                val user = firebaseAuth.currentUser
+             user?.let { User(it.uid,it.email!!) }?.let { emit(it) }
+         }
+    }
 }

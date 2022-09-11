@@ -14,7 +14,7 @@ class UpdateProfileDetail (
     data class Request(val updatedProfile: ProfileDetail) : UseCase.Request
     data class Response(val updateStatus: Boolean) : UseCase.Response
 
-    override fun process(request: Request): Flow<Response> =
+    override suspend fun process(request: Request): Flow<Response> =
         profile.updateProfile(request.updatedProfile)
             .map {
                 Response(it)

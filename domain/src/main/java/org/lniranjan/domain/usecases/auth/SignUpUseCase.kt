@@ -13,7 +13,7 @@ class SignUpUseCase  (
     data class Request(val user: User) : UseCase.Request
     data class Response(val credentialMatched: Boolean) : UseCase.Response
 
-    override fun process(request: Request): Flow<Response> = authenciation.sighnUp(request.user)
+    override suspend fun process(request: Request): Flow<Response> = authenciation.sighnUp(request.user)
         .map {
             Response(it)
         }

@@ -12,7 +12,7 @@ class UpdateMessage(configuration: UseCase.Configuration,
 ): UseCase<UpdateMessage.Request, UpdateMessage.Response>(configuration) {
     data class Request(val msg1: Message) : UseCase.Request
     data class Response(val updatedMsg: Message) : UseCase.Response
-    override fun process(request: Request): Flow<Response>{
+    override suspend fun process(request: Request): Flow<Response>{
        return messaging.editMessage( request.msg1)
             .map { Response(it) }
     }

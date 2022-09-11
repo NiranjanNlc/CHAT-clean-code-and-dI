@@ -16,7 +16,7 @@ class GetProfileDetail(
 ) : UseCase<GetProfileDetail.Request, GetProfileDetail.Response>(configuration) {
     data class Request(val user: User) : UseCase.Request
     data class Response(val profile: ProfileDetail) : UseCase.Response
-    override fun process(request: Request): Flow<Response> =  profile.getProfile(request.user)
+    override suspend fun process(request: Request): Flow<Response> =  profile.getProfile(request.user)
         .map {
             Response(it)
         }

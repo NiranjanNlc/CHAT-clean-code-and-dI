@@ -29,7 +29,7 @@ class UseCaseTest {
     @Before
     fun setUp() {
         useCase = object : UseCase<UseCase.Request, UseCase.Response>(configuration) {
-            override fun process(request: Request): Flow<Response> {
+            override suspend fun process(request: Request): Flow<Response> {
                 assertEquals(this@UseCaseTest.request, request)
                 return flowOf(response)
             }
@@ -47,7 +47,7 @@ class UseCaseTest {
     @Test
     fun testExecuteException() {
         useCase = object : UseCase<UseCase.Request, UseCase.Response>(configuration) {
-            override fun process(request: Request): Flow<Response> {
+            override suspend fun process(request: Request): Flow<Response> {
                 assertEquals(this@UseCaseTest.request, request)
                 return flow {
                     throw UseCaseException.ChatException(Throwable())

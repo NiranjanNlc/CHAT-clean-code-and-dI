@@ -48,4 +48,3 @@ class Firebasemessaging @Inject constructor(
         await().getValue(User::class.java) as Flow<User>
     }
    }
-}

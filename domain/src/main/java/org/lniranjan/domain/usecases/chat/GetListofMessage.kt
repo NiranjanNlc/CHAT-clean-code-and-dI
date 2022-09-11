@@ -12,7 +12,7 @@ class GetListofMessage (configuration: UseCase.Configuration,
 private val messaging: Messaging):UseCase<GetListofMessage.Request,GetListofMessage.Response>(configuration){
     data class Request(val user1: User, val user2: User) : UseCase.Request
     data class Response(val messagelIst : List<Message>) : UseCase.Response
-    override fun process(request: Request): Flow<Response> = messaging.
+    override suspend fun process(request: Request): Flow<Response> = messaging.
     getListOfMessage(request.user1,request.user2).
             map { Response(it) }
 }

@@ -13,6 +13,6 @@ class GetListofChat (
 ) : UseCase<GetListofChat.Request, GetListofChat.Response>(configuration) {
     data class Request(val user: User) : UseCase.Request
     data class Response(val chatList: List<Chat>) : UseCase.Response
-    override fun process(request: Request): Flow<Response> = chatting.getListOfChats()
+    override suspend fun process(request: Request): Flow<Response> = chatting.getListOfChats()
         .map { Response(it) }
 }

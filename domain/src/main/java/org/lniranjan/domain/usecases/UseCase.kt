@@ -9,7 +9,7 @@ import org.lniranjan.domain.entity.Result
 import org.lniranjan.domain.entity.UseCaseException
 
 abstract class UseCase<I: UseCase.Request, O: UseCase.Response>(private val configuration: Configuration) {
-    fun execute(request: I) = process(request)
+    suspend fun execute(request: I) = process(request)
         .map {
             org.lniranjan.domain.entity.Result.Success(it) as  Result<O>
         }
@@ -17,7 +17,7 @@ abstract class UseCase<I: UseCase.Request, O: UseCase.Response>(private val conf
         .catch {
             emit( Result.Error(UseCaseException.createFromThrowable(it)))
         }
-     abstract fun process(request:I): Flow<O>
+     abstract suspend fun process(request:I): Flow<O>
     class Configuration(val dispatcher: CoroutineDispatcher)
     interface Request
     interface Response

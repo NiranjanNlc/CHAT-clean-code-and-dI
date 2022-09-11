@@ -6,7 +6,7 @@ import org.lniranjan.data.source.firebase.FirebaseAuthenciation
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Authenciation
 
-class Authentication(private val firebaseAuthenciation: FirebaseAuthenciation) : Authenciation{
+class AuthenticationImpl(private val firebaseAuthenciation: FirebaseAuthenciation) : Authenciation{
 
     override suspend fun login(email: String?, password: String): Flow<Boolean> {
           return flow {

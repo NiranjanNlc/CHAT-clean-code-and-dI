@@ -5,6 +5,6 @@ import org.lniranjan.domain.entity.Chat
 import org.lniranjan.domain.entity.User
 
 interface Chatting {
-    fun getListOfChats(): Flow<List<Chat>>
-    fun getListOfUser():Flow<List<User>>
+    fun getListOfChats(uid:String): Flow<List<Chat>>
+    fun getListOfUser(uid: String):Flow<List<User>>
 }

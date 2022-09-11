@@ -6,9 +6,10 @@ import org.lniranjan.domain.entity.Message
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Messaging
 import org.lniranjan.domain.usecases.UseCase
+import javax.inject.Inject
 
-class UpdateMessage(configuration: UseCase.Configuration,
-                    private val messaging: Messaging
+class UpdateMessage @Inject constructor (configuration: UseCase.Configuration,
+                                        private val messaging: Messaging
 ): UseCase<UpdateMessage.Request, UpdateMessage.Response>(configuration) {
     data class Request(val msg1: Message) : UseCase.Request
     data class Response(val updatedMsg: Message) : UseCase.Response

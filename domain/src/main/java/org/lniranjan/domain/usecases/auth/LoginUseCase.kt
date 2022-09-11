@@ -4,8 +4,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.lniranjan.domain.repo.Authenciation
 import org.lniranjan.domain.usecases.UseCase
+import javax.inject.Inject
 
-class LoginUseCase(
+class LoginUseCase @Inject constructor(
     configuration: Configuration,
     private val authenciation: Authenciation
 ) : UseCase<LoginUseCase.Request, LoginUseCase.Response>(configuration)

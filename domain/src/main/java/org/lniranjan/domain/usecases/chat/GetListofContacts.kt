@@ -5,8 +5,9 @@ import kotlinx.coroutines.flow.map
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Chatting
 import org.lniranjan.domain.usecases.UseCase
+import javax.inject.Inject
 
-class GetListofContacts(
+class GetListofContacts @Inject constructor(
     configuration: Configuration,
     private val chatting: Chatting
 ) : UseCase<GetListofContacts.Request, GetListofContacts.Response>(configuration) {

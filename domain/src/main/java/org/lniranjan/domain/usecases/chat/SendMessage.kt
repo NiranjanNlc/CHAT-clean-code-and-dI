@@ -6,9 +6,10 @@ import org.lniranjan.domain.entity.Message
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Messaging
 import org.lniranjan.domain.usecases.UseCase
+import javax.inject.Inject
 
-class SendMessage( configuration: UseCase.Configuration,
-private val messaging: Messaging):UseCase<SendMessage.Request,SendMessage.Response>(configuration) {
+class SendMessage @Inject constructor (configuration: UseCase.Configuration,
+                                      private val messaging: Messaging):UseCase<SendMessage.Request,SendMessage.Response>(configuration) {
     data class Request(val sender: User, val reciver: User, val msg1: Message) : UseCase.Request
     data class Response(val sendStatus: Boolean) : UseCase.Response
     override suspend fun process(request: Request): Flow<Response> =

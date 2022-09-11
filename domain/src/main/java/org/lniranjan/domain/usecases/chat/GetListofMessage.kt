@@ -7,9 +7,10 @@ import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Chatting
 import org.lniranjan.domain.repo.Messaging
 import org.lniranjan.domain.usecases.UseCase
+import javax.inject.Inject
 
-class GetListofMessage (configuration: UseCase.Configuration,
-private val messaging: Messaging):UseCase<GetListofMessage.Request,GetListofMessage.Response>(configuration){
+class GetListofMessage  @Inject constructor (configuration: UseCase.Configuration,
+                                            private val messaging: Messaging):UseCase<GetListofMessage.Request,GetListofMessage.Response>(configuration){
     data class Request(val user1: User, val user2: User) : UseCase.Request
     data class Response(val messagelIst : List<Message>) : UseCase.Response
     override suspend fun process(request: Request): Flow<Response> = messaging.

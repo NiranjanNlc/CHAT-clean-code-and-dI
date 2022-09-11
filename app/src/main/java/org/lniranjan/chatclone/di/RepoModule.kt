@@ -12,8 +12,10 @@ import org.lniranjan.data.source.firebase.FireBaseChats
 import org.lniranjan.data.source.firebase.FireBaseProFile
 import org.lniranjan.data.source.firebase.FirebaseAuthenciation
 import org.lniranjan.data.source.firebase.Firebasemessaging
+import org.lniranjan.domain.repo.Authenciation
 import org.lniranjan.domain.repo.Chatting
 import org.lniranjan.domain.repo.Messaging
+import org.lniranjan.domain.repo.Profile
 
 
 @Module
@@ -21,18 +23,17 @@ import org.lniranjan.domain.repo.Messaging
 class RepoModule {
 
     @Provides
-    fun provideAuthRepo(
-        authenicationService: FirebaseAuthenciation )
+    fun provideAuthRepo (authenicationService: FirebaseAuthenciation ):Authenciation
             = AuthenticationImpl(authenicationService)
     @Provides
     fun provideChatRepo(
-        chats: FireBaseChats)
+        chats: FireBaseChats) : Chatting
             = ChattingImpl(chats)
     @Provides
     fun provideMessageRepo(
-        messaging: Firebasemessaging)
+        messaging: Firebasemessaging): Messaging
             = MessagingImpl( messaging)
     @Provides
-    fun provideProfileRepo( fireBaseProFile: FireBaseProFile)
+    fun provideProfileRepo( fireBaseProFile: FireBaseProFile):Profile
             = ProfileImpl(fireBaseProFile)
 }

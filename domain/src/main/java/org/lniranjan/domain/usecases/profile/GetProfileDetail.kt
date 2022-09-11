@@ -9,8 +9,9 @@ import org.lniranjan.domain.repo.Chatting
 import org.lniranjan.domain.repo.Profile
 import org.lniranjan.domain.usecases.UseCase
 import org.lniranjan.domain.usecases.chat.GetListofChat
+import javax.inject.Inject
 
-class GetProfileDetail(
+class GetProfileDetail @Inject constructor (
     configuration: Configuration,
     private val  profile:Profile
 ) : UseCase<GetProfileDetail.Request, GetProfileDetail.Response>(configuration) {

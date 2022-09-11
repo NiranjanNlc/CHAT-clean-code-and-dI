@@ -6,8 +6,9 @@ import org.lniranjan.domain.entity.ProfileDetail
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Profile
 import org.lniranjan.domain.usecases.UseCase
+import javax.inject.Inject
 
-class UpdateProfileDetail (
+class UpdateProfileDetail @Inject constructor (
     configuration: Configuration,
     private val  profile: Profile
 ) : UseCase<UpdateProfileDetail.Request, UpdateProfileDetail.Response>(configuration) {

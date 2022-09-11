@@ -5,8 +5,9 @@ import kotlinx.coroutines.flow.map
 import org.lniranjan.domain.entity.ProfileDetail
 import org.lniranjan.domain.repo.Profile
 import org.lniranjan.domain.usecases.UseCase
+import javax.inject.Inject
 
-class UpdateProfilePhoto (
+class UpdateProfilePhoto @Inject constructor (
     configuration: Configuration,
     private val  profile: Profile
     ) : UseCase<UpdateProfilePhoto .Request, UpdateProfilePhoto .Response>(configuration) {

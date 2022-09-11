@@ -5,7 +5,7 @@ import org.lniranjan.domain.entity.Result
 import org.lniranjan.domain.entity.Result.Success
 import org.lniranjan.domain.usecases.auth.LoginUseCase
 
-class EntityMapper {
+object EntityMapper {
 
     fun convert(response: Result<LoginUseCase.Response>): UiState<Boolean>? {
         return when (response)

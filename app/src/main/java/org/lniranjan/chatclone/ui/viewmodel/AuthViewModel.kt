@@ -25,8 +25,7 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val loginusecase: LoginUseCase,
     private val signOutUseCase: SignOutUseCase,
-    private val signUpUseCase: SignUpUseCase,
-    private val entityMapper: EntityMapper
+    private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
     private val _user = MutableStateFlow(AuthState())
     val user: StateFlow<AuthState> = _user
@@ -37,7 +36,7 @@ class AuthViewModel @Inject constructor(
    suspend fun login(credentials: Credentials) {
                   loginusecase.execute(LoginUseCase.Request(credentials.mail, credentials.password))
                       .map {
-                           entityMapper.convert(it)
+                           EntityMapper.convert(it)
                       }.onEach {
                           when(it)
                           {

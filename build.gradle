@@ -8,11 +8,16 @@ buildscript {
                         junit   : "4.13.2",
                         nav : "2.5.1",
                         hilt: "2.42",
-                        lifecycle: "2.3.1"
+                        lifecycle: "2.3.1",
+                        espreso: "3.4.0",
+                        androidtest: "1.4.0"
                 ]
                 testing = [
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
-                        junit: "junit:junit:${versions.junit}"
+                        junit: "junit:junit:${versions.junit}",
+                        espreso: "androidx.test.espresso:espresso-core:${versions.espreso}",
+                        androidtest: "androidx.test.ext:junit:${versions.androidtest}",
+                        androidtestrules: "androidx.test:rules:${versions.androidtest}"
                 ]
                 navigation =[
                         fragment :"androidx.navigation:navigation-fragment-ktx:${versions.nav}",
@@ -42,6 +47,9 @@ buildscript {
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
         classpath 'com.google.gms:google-services:4.3.3'
+    }
+    repositories {
+        google()
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.

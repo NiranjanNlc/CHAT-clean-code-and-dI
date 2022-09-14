@@ -45,8 +45,9 @@ dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':data')
     testImplementation testing.junit
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation  testing.espreso
+    androidTestImplementation testing.androidtest
+    androidTestImplementation testing.androidtestrules
     //navigation
     implementation navigation.fragment
     implementation navigation.ui

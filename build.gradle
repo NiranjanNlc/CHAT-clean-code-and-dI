@@ -17,7 +17,9 @@ buildscript {
                         junit: "junit:junit:${versions.junit}",
                         espreso: "androidx.test.espresso:espresso-core:${versions.espreso}",
                         androidtest: "androidx.test.ext:junit:${versions.androidtest}",
-                        androidtestrules: "androidx.test:rules:${versions.androidtest}"
+                        androidtestrules: "androidx.test:rules:${versions.androidtest}",
+                        nav:  "androidx.navigation:navigation-testing:${versions.nav}"
+
                 ]
                 navigation =[
                         fragment :"androidx.navigation:navigation-fragment-ktx:${versions.nav}",

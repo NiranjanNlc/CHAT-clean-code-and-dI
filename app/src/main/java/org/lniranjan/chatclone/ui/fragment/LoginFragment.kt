@@ -41,7 +41,6 @@ class LoginFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     public fun enableLogin() {
-
         bindind.logIn.apply {
             background =resources.getDrawable(R.drawable.switch_trcks, null)
             setTextColor(resources.getColor(R.color.textColor, null))
@@ -75,17 +74,31 @@ class LoginFragment : Fragment() {
         val passw2 = bindind.passwords01.text.toString()
         if(bindind.logInLayout.visibility==View.VISIBLE)
         {
-            lifecycleScope.launch {
-                viewModel.login(Credentials(mail = email, password = passw))
-
-            }
+            login(email, passw)
         }
         else
         {
-          if(passw1.equals(passw2))
-              lifecycleScope.launch { viewModel.register(Credentials(mail = emails, password = passw1))}
-            else
-                toast { "Password do not match " }
+            register(passw1, passw2, emails)
          }
-    } 
- }
+    }
+
+    private fun register(passw1: String, passw2: String, emails: String) {
+        if (passw1.equals(passw2))
+            lifecycleScope.launch {
+                viewModel.register(
+                    Credentials(
+                        mail = emails,
+                        password = passw1
+                    )
+                )
+            }
+        else
+            toast { "Password do not match " }
+    }
+
+    private fun login(email: String, passw: String) {
+        lifecycleScope.launch {
+            viewModel.login(Credentials(mail = email, password = passw))
+        }
+    }
+}

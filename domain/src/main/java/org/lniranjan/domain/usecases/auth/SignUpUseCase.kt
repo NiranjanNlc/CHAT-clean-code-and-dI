@@ -12,11 +12,13 @@ class SignUpUseCase @Inject constructor  (
     private val authenciation: Authenciation
 ) : UseCase<SignUpUseCase.Request, SignUpUseCase.Response>(configuration) {
     data class Request(val user: User) : UseCase.Request
-    data class Response(val credentialMatched: Boolean) : UseCase.Response
+    data class Response(val user: User?) : UseCase.Response
 
-    override suspend fun process(request: Request): Flow<Response> = authenciation.sighnUp(request.user)
-        .map {
-            Response(it)
-        }
+    override suspend fun process(request: Request): Flow<Response> =
+        authenciation.sighnUp(request.user)
+            .map {
+                Response(it)
+            }
+
 
 }

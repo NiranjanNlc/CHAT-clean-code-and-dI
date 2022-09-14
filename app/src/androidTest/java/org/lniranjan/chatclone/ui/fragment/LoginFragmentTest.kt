@@ -24,7 +24,7 @@ class LoginFragmentTest
     fun setUp()
     {
         navController = TestNavHostController(ApplicationProvider.getApplicationContext())
-//        navController.setGraph(R.navigation.nav_graph)
+        navController.setGraph(R.navigation.nav_chat)
         // mock the view model and its result
 
     }

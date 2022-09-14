@@ -1,10 +1,12 @@
 package org.lniranjan.chatclone.ui.fragment
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -37,6 +39,7 @@ class LoginFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     public fun enableLogin() {
 
         bindind.logIn.apply {
@@ -50,6 +53,7 @@ class LoginFragment : Fragment() {
         bindind.logInLayout.visibility = View.VISIBLE
         bindind.signUpLayout.visibility= View.GONE
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     public fun enableSignUp() {
         bindind.signUp.apply {
             background =resources.getDrawable(R.drawable.switch_trcks, null)

@@ -32,7 +32,6 @@ class AuthViewModel @Inject constructor(
     private val _userData = MutableStateFlow(UserState())
     val userData: StateFlow<UserState> = _userData
 
-
    suspend fun login(credentials: Credentials) {
                   loginusecase.execute(LoginUseCase.Request(credentials.mail, credentials.password))
                       .map {
@@ -58,9 +57,32 @@ class AuthViewModel @Inject constructor(
 
     fun register(credentials: Credentials) {
             viewModelScope.launch {
-                signUpUseCase.execute(SignUpUseCase.Request(User(credentials.mail,credentials.password)))
+                signUpUseCase.execute(
+                    SignUpUseCase.Request(
+                        User(
+                            credentials.mail,
+                            credentials.password
+                        )
+                    )
+                )
+                    .map {
+                        EntityMapper.convertToAuthState(it)
+                    }.onEach {
+                        when (it) {
+                            is UiState.Success -> {
+                                _user.value = AuthState(data = it.data as User)
+                            }
+                            is UiState.Error -> {
+                                _user.value = AuthState(error = it.errorMessage)
+                            }
+                            is UiState.Loading -> {
+                                _user.value = AuthState(isLoading = true)
+                            }
+                            else -> {
+
+                            }
+                        }
+                    }
             }
-    }
-
-
+            }
 }

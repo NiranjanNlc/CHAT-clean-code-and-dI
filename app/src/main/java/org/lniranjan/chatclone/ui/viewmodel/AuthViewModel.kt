@@ -40,7 +40,7 @@ class AuthViewModel @Inject constructor(
                           when(it)
                           {
                               is UiState.Success-> {
-                                  _user.value = AuthState()
+                                  _user.value = AuthState(it.data as User)
                               }
                               is UiState.Error -> {
                                   _user.value = AuthState(error = it.errorMessage)

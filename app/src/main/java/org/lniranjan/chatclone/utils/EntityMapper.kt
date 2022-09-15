@@ -8,7 +8,7 @@ import org.lniranjan.domain.usecases.auth.SignUpUseCase
 
 object EntityMapper {
 
-    fun convert(response: Result<LoginUseCase.Response>): UiState<Boolean>? {
+    fun convert(response: Result<LoginUseCase.Response>): UiState<Any>? {
         return when (response)
         {
             is Success -> {

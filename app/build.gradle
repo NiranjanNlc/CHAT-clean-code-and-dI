@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
+
 
 }
 
@@ -37,6 +39,9 @@ android {
     buildFeatures {
         dataBinding true
     }
+    hilt {
+        enableTransformForLocalTests = true
+    }
 }
 
 dependencies {
@@ -53,7 +58,7 @@ dependencies {
     androidTestImplementation testing.androidtestrules
     //navigtaion testing
     androidTestImplementation testing.nav
-
+    debugImplementation testing.fragment
     //navigation
     implementation navigation.fragment
     implementation navigation.ui

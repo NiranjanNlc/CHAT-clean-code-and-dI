@@ -2,6 +2,7 @@ package org.lniranjan.chatclone.ui.fragment
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.lniranjan.chatclone.R
@@ -36,7 +38,21 @@ class LoginFragment : Fragment() {
     }
 
     private fun setObsever() {
-
+        lifecycleScope.launchWhenCreated {
+            viewModel.user.collect {
+                if (it.data != null) {
+                    requireActivity().toast("Success")
+                    view?.let { it1 ->
+                        Navigation.findNavController(it1)
+                            .navigate(R.id.action_loginFragment_to_chatListFragment)
+                    }
+                } else if (it.error != null) {
+                    requireActivity().toast("Login Failed")
+                } else {
+                    // donothing
+                }
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -72,6 +88,7 @@ class LoginFragment : Fragment() {
         val emails =bindind.eMails.text.toString()
         val passw1 = bindind.passwordss.text.toString()
         val passw2 = bindind.passwords01.text.toString()
+        Log.i(" LoginFragment", "submit: $email $passw $emails $passw1 $passw2")
         if(bindind.logInLayout.visibility==View.VISIBLE)
         {
             login(email, passw)

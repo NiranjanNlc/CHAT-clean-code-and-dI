@@ -10,7 +10,8 @@ buildscript {
                         hilt: "2.42",
                         lifecycle: "2.3.1",
                         espreso: "3.4.0",
-                        androidtest: "1.4.0"
+                        androidtest: "1.4.0",
+                        fragment: "1.5.2"
                 ]
                 testing = [
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
@@ -18,7 +19,8 @@ buildscript {
                         espreso: "androidx.test.espresso:espresso-core:${versions.espreso}",
                         androidtest: "androidx.test.ext:junit:${versions.androidtest}",
                         androidtestrules: "androidx.test:rules:${versions.androidtest}",
-                        nav:  "androidx.navigation:navigation-testing:${versions.nav}"
+                        nav:  "androidx.navigation:navigation-testing:${versions.nav}",
+                        fragment:  "androidx.fragment:fragment-testing:${versions.fragment}"
 
                 ]
                 navigation =[

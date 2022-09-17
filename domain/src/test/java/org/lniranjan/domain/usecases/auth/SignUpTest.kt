@@ -1,7 +1,16 @@
 package org.lniranjan.domain.usecases.auth
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runBlockingTest
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Test
+import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Authenciation 
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 /* SIGHN UP
 * gets the necessary details from the user
@@ -10,6 +19,61 @@ import org.mockito.kotlin.mock
 * */
  class SignUpTest {
 
-     private val authenciation = mock<Authenciation>()
+    private val authenciation = mock<Authenciation>()
+    private val correctUser = User(mail = "nlc@gmail.com")
+    private val useCase = SignUpUseCase(mock(),authenciation)
+    private   val userWithIncorrectCredentials : User = correctUser.copy(mail = "jpt@gmail.com" , password = "djdkfakf")
+    private   val userWithIncorrectPassword : User =correctUser.copy(password = "jpt@gmail.com" )
+    private   val userWithIncorrectEmail : User =correctUser.copy(mail = "jpt@gmail.com" )
+    private   lateinit var request: SignUpUseCase.Request
+
+    @ExperimentalCoroutinesApi
+    @Before
+    suspend fun setUp()
+    {
+//        print(correctUser)
+        print(" check dude ${userWithIncorrectCredentials.mail} and ${userWithIncorrectCredentials.password}")
+        whenever(authenciation.login(userWithIncorrectCredentials.mail, userWithIncorrectCredentials.password)).thenReturn(
+            flowOf(false)
+        )
+        whenever(authenciation.login(userWithIncorrectEmail.mail, userWithIncorrectEmail.password)).thenReturn(
+            flowOf(false)
+        )
+        whenever(authenciation.login(userWithIncorrectPassword.mail, userWithIncorrectPassword.password)).thenReturn(
+            flowOf(false)
+        )
+        whenever(authenciation.login(correctUser.mail, correctUser.password)).thenReturn(flowOf(true))
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testExampleWithIncorrectCredentials() = runBlockingTest {
+        request = SignUpUseCase.Request(userWithIncorrectCredentials.mail, userWithIncorrectCredentials.password)
+        val response= useCase.process(request)
+        Assert.assertEquals(SignUpUseCase.Response(false), response.first())
+    }
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testExampleWithIncorrectIncorrectEmail() = runBlockingTest {
+        request = SignUpUseCase.Request(userWithIncorrectEmail.mail, userWithIncorrectEmail.password)
+        val response= useCase.process(request)
+        Assert.assertEquals(SignUpUseCase.Response(false), response.first())
+
+    }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testExampleWithIncorrectIncorrectPassword() = runBlockingTest {
+        request = SignUpUseCase.Request(userWithIncorrectPassword.mail, userWithIncorrectPassword.password)
+        val response= useCase.process(request)
+        Assert.assertEquals(SignUpUseCase.Response(false), response.first())
+    }
+    @ExperimentalCoroutinesApi
+    @Test
+    fun testExampleWithCorrectCredintials() = runBlockingTest {
+        request = SignUpUseCase.Request( correctUser.mail,  correctUser.password)
+        val response= useCase.process(request)
+        Assert.assertEquals(SignUpUseCase.Response(true), response.first())
+    }
 
 }

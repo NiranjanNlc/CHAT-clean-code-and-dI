@@ -2,6 +2,7 @@ package org.lniranjan.chatclone.ui.viewmodel
 
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -56,6 +57,7 @@ class AuthViewModel @Inject constructor(
     }
 
     fun register(credentials: Credentials) {
+        Log.i(" regisdter", "submit: $credentials")
             viewModelScope.launch {
                 signUpUseCase.execute(
                     SignUpUseCase.Request(

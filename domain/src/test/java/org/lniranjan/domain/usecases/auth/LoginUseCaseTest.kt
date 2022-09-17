@@ -28,7 +28,7 @@ class LoginUseCaseTest {
 
     @ExperimentalCoroutinesApi
     @Before
-    fun setUp()
+    suspend fun setUp()
     {
 //        print(correctUser)
         print(" check dude ${userWithIncorrectCredentials.mail} and ${userWithIncorrectCredentials.password}")

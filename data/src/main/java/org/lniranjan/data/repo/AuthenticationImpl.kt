@@ -30,7 +30,6 @@ class AuthenticationImpl(private val firebaseAuthenciation: FirebaseAuthenciatio
            emit (firebaseAuthenciation.sighnUp(user)?.user!!.let {
                User(it.uid,it.uid, it.displayName, it.phoneNumber)
            })
-       }
            .catch {
                 Log.d("TAG", "sighnUp: ${it.message}")
            }

@@ -14,7 +14,7 @@ class SignUpUseCase (
     configuration: Configuration,
     private val authenciation: Authenciation
 ) : UseCase<SignUpUseCase.Request, SignUpUseCase.Response>(configuration) {
-    data class Request(val user: User) : UseCase.Request
+    data class Request(val user: User) : UseCase.Request 
     data class Response(val user: User?) : UseCase.Response
 
     override suspend fun process(request: Request): Flow<Response> {

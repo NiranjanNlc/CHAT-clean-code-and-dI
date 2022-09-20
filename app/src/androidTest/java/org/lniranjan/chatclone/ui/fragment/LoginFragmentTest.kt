@@ -2,9 +2,11 @@ package org.lniranjan.chatclone.ui.fragment
 
 import android.content.ComponentName
 import android.content.Intent
+
 import androidx.navigation.NavController
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
+import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
@@ -15,6 +17,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.lniranjan.chatclone.HiltTestActivity
 import org.lniranjan.chatclone.R
+import org.lniranjan.chatclone.ui.activity.MainActivity
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class LoginFragmentTest
@@ -24,6 +27,7 @@ class LoginFragmentTest
     @Before
     fun setUp()
     {
+
 
     }
 

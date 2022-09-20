@@ -1,5 +1,3 @@
-package org.lniranjan.chatclone
-
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 

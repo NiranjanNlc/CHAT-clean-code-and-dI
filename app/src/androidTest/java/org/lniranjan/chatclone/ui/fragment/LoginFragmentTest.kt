@@ -1,5 +1,6 @@
 package org.lniranjan.chatclone.ui.fragment
 
+import android.content.ComponentName
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.testing.launchFragmentInContainer
@@ -29,7 +30,12 @@ class LoginFragmentTest
     {
         navController = TestNavHostController(ApplicationProvider.getApplicationContext())
          // mock the view model and its result
-
+        val startActivityIntent = Intent.makeMainActivity(
+            ComponentName(
+                ApplicationProvider.getApplicationContext(),
+                HiltTestActivity::class.java
+            )
+        )
         // launch desired  fragment
         val scenario = launchFragmentInContainer<LoginFragment>()
 

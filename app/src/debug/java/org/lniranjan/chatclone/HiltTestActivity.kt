@@ -1,4 +1,4 @@
-package org.lniranjan.chatclone.ui.fragment
+package org.lniranjan.chatclone
 
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint

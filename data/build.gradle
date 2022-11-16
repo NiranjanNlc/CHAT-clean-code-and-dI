@@ -44,4 +44,7 @@ dependencies {
     //hilt
     implementation di.hilt
     kapt di.hiltKapt
+
+    //datastore
+    implementation store.datastore
 }

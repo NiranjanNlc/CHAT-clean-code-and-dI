@@ -56,8 +56,8 @@ class UseCaseTest {
 
         }
         runBlockingTest {
-            val result = useCase.execute(request).first()
-            assertTrue((result.isFailure))
+            val result = useCase.execute(request)
+            assertTrue((result.first().toString().isNullOrEmpty()))
         }
     }
     @Test

@@ -18,7 +18,7 @@ abstract class UseCase<I: UseCase.Request, O: UseCase.Response>(private val conf
             }
             .flowOn(configuration.dispatcher)
             .catch {
-//            Log.d("UseCase", "Error: ${it.message}")
+            Log.d("UseCase", "Error: ${it.message}")
                 emit(Result.Error(UseCaseException.createFromThrowable(it)))
             }
     }

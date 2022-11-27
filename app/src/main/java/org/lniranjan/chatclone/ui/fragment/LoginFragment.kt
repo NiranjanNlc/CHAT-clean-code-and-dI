@@ -88,6 +88,7 @@ class LoginFragment : Fragment() {
         val emails =bindind.eMails.text.toString()
         val passw1 = bindind.passwordss.text.toString()
         val passw2 = bindind.passwords01.text.toString()
+        val const = passw.toDouble()
         Log.i(" LoginFragment", "submit: $email $passw $emails $passw1 $passw2")
         if(bindind.logInLayout.visibility==View.VISIBLE)
         {

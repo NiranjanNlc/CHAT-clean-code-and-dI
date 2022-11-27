@@ -28,11 +28,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
 dependencies {
     implementation project(path: ':domain')
-    testImplementation testing.junit
+    implementation 'androidx.datastore:datastore-core:1.0.0'
     implementation platform(firebase.bom)
     implementation firebase.analytics
     implementation firebase.database
@@ -43,8 +44,19 @@ dependencies {
     implementation coroutines.firebase
     //hilt
     implementation di.hilt
+    testImplementation 'junit:junit:4.12'
     kapt di.hiltKapt
 
     //datastore
     implementation store.datastore
+
+    //mockito
+    testImplementation testing.mockito
+    testImplementation testing.coroutines
+
+    // junit 5 testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
 }
+

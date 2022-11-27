@@ -5,13 +5,14 @@ buildscript {
             {
                 versions = [
                         mockito  : "4.0.0",
-                        junit   : "4.13.2",
+                        junit   : "5.+",
                         nav : "2.5.1",
                         hilt: "2.42",
                         lifecycle: "2.3.1",
                         espreso: "3.4.0",
                         androidtest: "1.4.0",
-                        fragment: "1.5.2"
+                        fragment: "1.5.2",
+                        coroutines: "1.5.2"
                 ]
                 testing = [
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
@@ -20,8 +21,8 @@ buildscript {
                         androidtest: "androidx.test.ext:junit:${versions.androidtest}",
                         androidtestrules: "androidx.test:rules:${versions.androidtest}",
                         nav:  "androidx.navigation:navigation-testing:${versions.nav}",
-                        fragment:  "androidx.fragment:fragment-testing:${versions.fragment}"
-
+                        fragment:  "androidx.fragment:fragment-testing:${versions.fragment}",
+                        coroutines:"org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}"
                 ]
                 navigation =[
                         fragment :"androidx.navigation:navigation-fragment-ktx:${versions.nav}",
@@ -42,9 +43,8 @@ buildscript {
                         auth: 'com.google.firebase:firebase-auth-ktx'
                 ]
                 coroutines = [
-                        core: "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1",
-                        android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1",
-                        test: "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1",
+                        core: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
+                        android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",
                         firebase: "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.0"
                         ]
                 store = [

@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
 import org.lniranjan.data.source.firebase.FirebaseAuthenciation
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Authenciation
@@ -27,9 +28,10 @@ class AuthenticationImpl(private val firebaseAuthenciation: FirebaseAuthenciatio
     override fun sighnUp(user: User): Flow<User> {
         Log.d("TAG", "sighnUp: ${user.mail}, ${user.password}")
        return flow {
-           emit (firebaseAuthenciation.sighnUp(user)?.user!!.let {
+           emit (firebaseAuthenciation.sighnUp(user)?.await()?.user!!.let {
                User(it.uid,it.uid, it.displayName, it.phoneNumber)
            })
+       }
            .catch {
                 Log.d("TAG", "sighnUp: ${it.message}")
            }

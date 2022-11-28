@@ -21,7 +21,7 @@ class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth
         }
     }
 
-    fun logout(user: User): Flow<Boolean> {
+    fun logout(): Flow<Boolean> {
         return flow {
             firebaseAuth.signOut()
             emit(true)

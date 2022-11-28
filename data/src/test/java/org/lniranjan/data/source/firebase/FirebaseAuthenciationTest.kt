@@ -51,7 +51,7 @@ class FirebaseAuthenciationTest {
     fun testLogOutFunction()
     {
         Mockito.doNothing().`when`(mock<FirebaseAuth>()).signOut() // doNothing().`when`(mock<FirebaseAuth>().signOut())
-        assert( authenciation.logout(user) == null)
+        assert( authenciation.logout() == null)
     }
 
     @Test

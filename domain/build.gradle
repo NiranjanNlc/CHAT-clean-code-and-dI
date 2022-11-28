@@ -40,5 +40,12 @@ dependencies {
     //Hilt
     implementation di.hilt
     kapt di.hiltKapt
+    //mockito
+    testImplementation testing.mockito
+    testImplementation testing.coroutines
+
+    // junit 5 testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
 }

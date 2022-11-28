@@ -13,7 +13,7 @@ class SignOutUseCase @Inject constructor (
 ) : UseCase<SignOutUseCase.Request, SignOutUseCase.Response>(configuration) {
     data class Request(val user: User) : UseCase.Request
     data class Response(val credentialMatched: Boolean) : UseCase.Response
-    override suspend fun process(request: Request): Flow<Response> = authenciation.logout(request.user)
+    override suspend fun process(request: Request): Flow<Response> = authenciation.logout()
         .map {
             Response(it)
         }

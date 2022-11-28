@@ -6,7 +6,7 @@ import org.lniranjan.domain.entity.User
 
 interface Authenciation {
     suspend fun login(email: String, passwrd: String): Flow<Boolean>
-    fun logout(user: User):Flow<Boolean>
+    fun logout( ):Flow<Boolean>
     fun sighnUp(user: User):Flow<User>
     fun getUser():Flow<User>
 }

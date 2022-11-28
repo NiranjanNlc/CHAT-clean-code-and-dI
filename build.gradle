@@ -5,7 +5,7 @@ buildscript {
             {
                 versions = [
                         mockito  : "4.0.0",
-                        junit   : "5.+",
+                        junit   : "4.12",
                         nav : "2.5.1",
                         hilt: "2.42",
                         lifecycle: "2.3.1",

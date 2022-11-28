@@ -28,8 +28,7 @@ class LoginUseCaseTest {
 
     @ExperimentalCoroutinesApi
     @Before
-    suspend fun setUp()
-    {
+    fun setUp() = runBlockingTest{
 //        print(correctUser)
         print(" check dude ${userWithIncorrectCredentials.mail} and ${userWithIncorrectCredentials.password}")
         whenever(authenciation.login(userWithIncorrectCredentials.mail, userWithIncorrectCredentials.password)).thenReturn(flowOf(false))

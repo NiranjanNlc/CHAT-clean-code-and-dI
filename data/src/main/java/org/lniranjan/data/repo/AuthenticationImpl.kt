@@ -20,8 +20,8 @@ class AuthenticationImpl(private val firebaseAuthenciation: FirebaseAuthenciatio
           }
     }
 
-    override fun logout(user: User): Flow<Boolean> {
-        return  firebaseAuthenciation.logout(user)
+    override fun logout(): Flow<Boolean> {
+        return  firebaseAuthenciation.logout()
     }
 
     override fun sighnUp(user: User): Flow<User> {

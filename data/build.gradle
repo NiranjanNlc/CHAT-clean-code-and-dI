@@ -45,6 +45,8 @@ dependencies {
     //hilt
     implementation di.hilt
     testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     kapt di.hiltKapt
 
     //datastore

@@ -1,7 +1,6 @@
 package org.lniranjan.data.repo
 
-import android.util.Log
-import com.google.firebase.auth.FirebaseUser
+import android.util.Log 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -12,9 +11,9 @@ import org.lniranjan.domain.repo.Authenciation
 
 class AuthenticationImpl(private val firebaseAuthenciation: FirebaseAuthenciation) : Authenciation{
 
-    override suspend fun login(email: String?, password: String): Flow<Boolean> {
+    override suspend fun login(email: String, password: String): Flow<Boolean> {
           return flow {
-              if (firebaseAuthenciation.login(email, password)?.user != null) {
+              if (firebaseAuthenciation.login(email, password)?.await()?.user!= null) {
                   emit(true)
               }
               emit(false)

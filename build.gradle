@@ -12,7 +12,8 @@ buildscript {
                         espreso: "3.4.0",
                         androidtest: "1.4.0",
                         fragment: "1.5.2",
-                        coroutines: "1.5.2"
+                        coroutines: "1.5.2",
+                        ktlint: "7.1.0",
                 ]
                 testing = [
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
@@ -53,10 +54,12 @@ buildscript {
             }
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:${versions.ktlint}"
         classpath 'com.google.gms:google-services:4.3.3'
     }
     repositories {
         google()
+        mavenCentral()
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
@@ -64,6 +67,11 @@ plugins {
     id 'com.android.application' version '7.2.1' apply false
     id 'com.android.library' version '7.2.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+    id "org.jlleitschuh.gradle.ktlint" version "7.1.0"
+}
+allprojects {
+    apply plugin: 'org.jlleitschuh.gradle.ktlint'
+
 }
 task clean(type: Delete) {
     delete rootProject.buildDir

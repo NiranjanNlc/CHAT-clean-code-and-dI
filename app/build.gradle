@@ -38,9 +38,6 @@ android {
     buildFeatures {
         dataBinding true
     }
-    hilt {
-        enableTransformForLocalTests = true
-    }
 }
 
 dependencies {

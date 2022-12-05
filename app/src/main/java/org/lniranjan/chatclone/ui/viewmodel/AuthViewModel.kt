@@ -29,9 +29,7 @@ class AuthViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
     private val _user = MutableStateFlow(AuthState())
-    val user: StateFlow<AuthState> = _user
-    private val _userData = MutableStateFlow(UserState())
-    val userData: StateFlow<UserState> = _userData
+    val sighnedUpuser: StateFlow<AuthState> = _user
 
    suspend fun login(credentials: Credentials) {
                   loginusecase.execute(LoginUseCase.Request(credentials.mail, credentials.password))
@@ -59,14 +57,7 @@ class AuthViewModel @Inject constructor(
     fun register(credentials: Credentials) {
         Log.i(" regisdter", "submit: $credentials")
             viewModelScope.launch {
-                signUpUseCase.execute(
-                    SignUpUseCase.Request(
-                        User(
-                            credentials.mail,
-                            credentials.password
-                        )
-                    )
-                )
+                signUpUseCase.execute(SignUpUseCase.Request(User(credentials.mail, credentials.password)))
                     .map {
                         EntityMapper.convertToAuthState(it)
                     }.onEach {
@@ -86,5 +77,7 @@ class AuthViewModel @Inject constructor(
                         }
                     }
             }
-            }
+    }
+
+
 }

@@ -1,10 +1,7 @@
 package org.lniranjan.domain.usecases.auth
 
 import android.util.Log
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Authenciation
 import org.lniranjan.domain.usecases.UseCase
@@ -18,13 +15,13 @@ class SignUpUseCase (
     data class Response(val user: User?) : UseCase.Response
 
     override suspend fun process(request: Request): Flow<Response> {
-        var result = authenciation.sighnUp(request.user)
+        var result =  authenciation.signUp(request.user)
             .map {
                 Response(it)
             }
-            Log.d("TAG", "process: ${result.first { true }}")
+            Log.d("TAG", "process: ${ { true }}")
         Log.i(" regisdter", " $request submit: result ${result.toString()}")
-        return result
+        return   flow { result }
     }
 
 }

@@ -14,6 +14,6 @@ class GetListofChat @Inject constructor (
 ) : UseCase<GetListofChat.Request, GetListofChat.Response>(configuration) {
     data class Request(val user: User) : UseCase.Request
     data class Response(val chatList: List<Chat>) : UseCase.Response
-    override suspend fun process(request: Request): Flow<Response> = chatting.getListOfChats(request.user.userId)
+    override suspend fun process(request: Request): Flow<Response> = chatting.getListOfChats(request.user.userId!!)
         .map { Response(it) }
 }

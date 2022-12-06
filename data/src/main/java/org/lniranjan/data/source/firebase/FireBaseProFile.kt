@@ -22,7 +22,7 @@ class FireBaseProFile  @Inject constructor(
 
      fun getProfile(user: User): Flow<ProfileDetail> { 
         return flow {
-            rootRef.child("users").child(user.userId).
+            rootRef.child("users").child(user.userId!!).
             get()
                 .await().children
                 .map {

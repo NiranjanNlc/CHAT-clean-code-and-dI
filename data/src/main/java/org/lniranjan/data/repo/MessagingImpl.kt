@@ -20,7 +20,7 @@ class MessagingImpl(private val firebaseMessaging: Firebasemessaging) : Messagin
         return flow { emit(true) }    }
 
     override fun getListOfMessage(sender: User, receiver: User): Flow<List<Message>> {
-       return  flow {  firebaseMessaging.getMessages(sender.userId,receiver.userId)}
+       return  flow {  firebaseMessaging.getMessages(sender.userId!!,receiver.userId!!)}
      }
 
 

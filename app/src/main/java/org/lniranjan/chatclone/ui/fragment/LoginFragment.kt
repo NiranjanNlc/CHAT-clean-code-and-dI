@@ -83,19 +83,19 @@ class LoginFragment : Fragment() {
     } 
     public fun submit ()
     {
-        val email =bindind.eMail.text.toString()
-        val passw =bindind.passwords.text.toString()
-        val emails =bindind.eMails.text.toString()
-        val passw1 = bindind.passwordss.text.toString()
-        val passw2 = bindind.passwords01.text.toString()
-        val const = passw.toDouble()
-        Log.i(" LoginFragment", "submit: $email $passw $emails $passw1 $passw2")
         if(bindind.logInLayout.visibility==View.VISIBLE)
         {
+            val email =bindind.eMail.text.toString()
+            val passw =bindind.passwords.text.toString()
+            Log.i(" LoginFragment", "submit: $email $passw")
             login(email, passw)
         }
         else
         {
+            val emails =bindind.eMails.text.toString()
+            val passw1 = bindind.passwordss.text.toString()
+            val passw2 = bindind.passwords01.text.toString()
+            Log.i(" LoginFragment", "submit:   $emails $passw1 $passw2")
             register(passw1, passw2, emails)
          }
     }

@@ -7,14 +7,17 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.lniranjan.data.repo.AuthenticationImpl
 import org.lniranjan.data.source.firebase.FirebaseAuthenciation
 import org.lniranjan.domain.repo.Authenciation
-
 
 @Module
 @InstallIn(SingletonComponent::class)
 class FireBaseModule {
+
+
+    @Provides
+    fun provideAuthRepo (firebaseAuthenciation: FirebaseAuth ): Authenciation
+            = FirebaseAuthenciation(firebaseAuthenciation)
 
     @Provides
     fun provideFireBaseAuth (): FirebaseAuth {

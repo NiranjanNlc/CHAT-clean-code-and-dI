@@ -4,7 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.lniranjan.data.repo.AuthenticationImpl
 import org.lniranjan.data.repo.ChattingImpl
 import org.lniranjan.data.repo.MessagingImpl
 import org.lniranjan.data.repo.ProfileImpl
@@ -22,9 +21,6 @@ import org.lniranjan.domain.repo.Profile
 @InstallIn(SingletonComponent::class)
 class RepoModule {
 
-    @Provides
-    fun provideAuthRepo (authenicationService: FirebaseAuthenciation ):Authenciation
-            = AuthenticationImpl(authenicationService)
     @Provides
     fun provideChatRepo(
         chats: FireBaseChats) : Chatting

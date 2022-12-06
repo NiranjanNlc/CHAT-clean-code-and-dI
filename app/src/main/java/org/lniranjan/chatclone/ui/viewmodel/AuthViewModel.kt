@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 import org.lniranjan.chatclone.modal.Credentials
 import org.lniranjan.chatclone.ui.state.AuthState
 import org.lniranjan.chatclone.ui.state.UiState
-import org.lniranjan.chatclone.ui.state.UserState
 import org.lniranjan.chatclone.utils.EntityMapper
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.usecases.auth.LoginUseCase

@@ -11,14 +11,15 @@ import org.lniranjan.domain.entity.UseCaseException
 
 abstract class UseCase<I: UseCase.Request, O: UseCase.Response>(private val configuration: Configuration) {
     suspend fun execute(request: I): Flow<Result<O>> {
-        Log.d("UseCase", "Error: ${request}")
+
         return process(request)
             .map {
+                Log.d("UseCase 2 ", "Sucess : ${it}")
                 Result.Success(it) as Result<O>
             }
             .flowOn(configuration.dispatcher)
             .catch {
-            Log.d("UseCase", "Error: ${it.message}")
+            Log.d("UseCase1 ", "Error: ${it.message}")
                 emit(Result.Error(UseCaseException.createFromThrowable(it)))
             }
     }

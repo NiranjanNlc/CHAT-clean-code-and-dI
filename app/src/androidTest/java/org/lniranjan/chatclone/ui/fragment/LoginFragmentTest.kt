@@ -15,7 +15,6 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lniranjan.chatclone.HiltTestActivity
 import org.lniranjan.chatclone.R
 import org.lniranjan.chatclone.ui.activity.MainActivity
 

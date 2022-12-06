@@ -102,17 +102,15 @@ class LoginFragment : Fragment() {
 
     private fun register(passw1: String, passw2: String, emails: String) {
         Log.i(" regisdter", "submit: $emails $emails $passw1 $passw2")
-        if (passw1.equals(passw2))
-
-            lifecycleScope.launch {
-                viewModel.register(
-                    Credentials(
-                        mail = emails,
-                        password = passw1
-                    )
+        if (passw1.equals(passw2)) {
+            viewModel.register(
+                Credentials(
+                    mail = emails,
+                    password = passw1
                 )
-                Log.i(" regisdter", "submit: $emails $emails $passw1 $passw2")
-            }
+            )
+            Log.i(" regisdter", "submit: $emails $emails $passw1 $passw2")
+        }
         else
             toast { "Password do not match " }
     }

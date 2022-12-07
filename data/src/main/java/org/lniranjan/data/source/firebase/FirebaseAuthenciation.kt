@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import org.lniranjan.domain.entity.UseCaseException
 import org.lniranjan.domain.entity.User
 import org.lniranjan.domain.repo.Authenciation
 import javax.inject.Inject
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth) : Authenciation {
     override suspend fun login(email: String, password: String): Flow<Boolean> {
         return flow {
-            if (firebaseAuth.signInWithEmailAndPassword(email, password)?.await()?.user!= null) {
+            if (firebaseAuth.signInWithEmailAndPassword(email, password)?.await()?.user != null) {
                 emit(true)
             }
             emit(false)
@@ -29,13 +30,23 @@ class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth
 
 
     override fun getUser(): Flow<User> {
-         return flow {
-                val user = firebaseAuth.currentUser
-             user?.let { User(it.uid,it.email!!) }?.let { emit(it) }
-         }
+        return flow {
+            val user = firebaseAuth.currentUser
+            user?.let { User(it.uid, it.email!!) }?.let { emit(it) }
+        }
     }
 
-    override suspend fun signUp(user: User): Flow<User> = firebaseAuth.createUserWithEmailAndPassword(user.mail,user.password).
-    await()
-        .user?.let { User(it.uid,it.email!!) }?.let { flow { emit(it) } }!!
+    override suspend fun signUp(user: User): Flow<Result1<Any>> {
+        Log.i("SignUpUseCase", "process: $user")
+        return try {
+            firebaseAuth.createUserWithEmailAndPassword(user.mail, user.password).await()
+                .user?.let { User(userId = it.uid,mail = it.email!!) }
+                ?.let {
+                    Log.i("SignUpUseCase", "process: $it")
+                    flow { emit(Result1.Success(it)) } }!!
+        } catch (e: Exception) {
+            Log.e("FirebaseAuthenciation", "Error in FirebaseAuthenciation", e)
+            flow { emit(Result1.Error(UseCaseException.createFromThrowable(e))) }
+        }
+    }
 }

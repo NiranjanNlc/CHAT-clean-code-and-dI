@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -28,7 +27,6 @@ class AuthViewModel @Inject constructor(
     private val signOutUseCase: SignOutUseCase,
     private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
-    private val user = MutableStateFlow(AuthState())
     val _user  = MutableLiveData<AuthState>()
 
    suspend fun login(credentials: Credentials) {
@@ -56,8 +54,9 @@ class AuthViewModel @Inject constructor(
 
     fun register(credentials: Credentials) {
         Log.i(" regisdter", "submit: $credentials")
+
             viewModelScope.launch {
-                signUpUseCase.execute(SignUpUseCase.Request(User(credentials.mail, credentials.password)))
+                signUpUseCase.process(SignUpUseCase.Request(User(credentials.mail, credentials.password)))
                     .map {
                         Log.i(" register viewmodal ", "submit: $it")
                         EntityMapper.convertToAuthState(it)

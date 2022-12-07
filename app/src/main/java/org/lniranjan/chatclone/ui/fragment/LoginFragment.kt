@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
                             .navigate(R.id.action_loginFragment_to_settingFragment)
                     }
                 } else if (it.error != null) {
-                    requireActivity().toast("Sighn Ip  Failed")
+                    requireActivity().toast(it.error)
                 } else {
                     // donothing
                 }

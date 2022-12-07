@@ -35,18 +35,15 @@ class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth
          }
     }
 
-    override suspend fun signUp(user: User): Result<User?> {
-        return try {
-            val result = firebaseAuth.createUserWithEmailAndPassword(user.mail,user.password).
-            await()
-                .user?.
-                let {
-                    User(userId = it.uid, mail = it.email!!, userName = it.displayName )
-                }
-            Result.success(result)
-        } catch (e :Exception){
-            println(e.message)
-            Result.failure(e)
-        }
+    override suspend fun signUp(user: User) : Flow<User> {
+          try {
+              return flow {
+                  val authResult  = firebaseAuth.createUserWithEmailAndPassword(user.mail,user.password).await()
+                  val firebaseUser = authResult.user
+                  firebaseUser?.let { User(it.uid,it.email!!) }?.let { emit(it) }
+              }
+          } catch (e: Exception) {
+              throw e
+          }
     }
-    }
+}

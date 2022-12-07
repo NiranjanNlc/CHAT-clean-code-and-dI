@@ -7,5 +7,5 @@ interface Authenciation {
     suspend fun login(email: String, passwrd: String): Flow<Boolean>
     fun logout( ):Flow<Boolean>
     fun getUser():Flow<User>
-    suspend fun signUp(user: User): Result<User?>
+    suspend fun signUp(user: User): Flow<User>
 }

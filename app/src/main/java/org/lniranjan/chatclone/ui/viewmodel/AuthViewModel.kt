@@ -3,6 +3,7 @@ package org.lniranjan.chatclone.ui.viewmodel
 
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,8 +28,8 @@ class AuthViewModel @Inject constructor(
     private val signOutUseCase: SignOutUseCase,
     private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
-    private val _user = MutableStateFlow(AuthState())
-    val sighnedUpuser: StateFlow<AuthState> = _user
+    private val user = MutableStateFlow(AuthState())
+    val _user  = MutableLiveData<AuthState>()
 
    suspend fun login(credentials: Credentials) {
                   loginusecase.execute(LoginUseCase.Request(credentials.mail, credentials.password))
@@ -71,7 +72,7 @@ class AuthViewModel @Inject constructor(
                                 _user.value = AuthState(isLoading = true)
                             }
                             else -> {
-
+                                    // do nthing why should i care about other states
                             }
                         }
                     }

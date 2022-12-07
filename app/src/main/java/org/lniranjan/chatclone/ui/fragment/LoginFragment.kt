@@ -38,8 +38,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setObsever() {
-        lifecycleScope.launchWhenCreated {
-            viewModel.sighnedUpuser.collect {
+        viewModel._user.observe(viewLifecycleOwner,{
                 if (it.data != null) {
                     requireActivity().toast("Success")
                     view?.let { it1 ->
@@ -52,8 +51,8 @@ class LoginFragment : Fragment() {
                     // donothing
                 }
             }
+        )
         }
-    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     public fun enableLogin() {

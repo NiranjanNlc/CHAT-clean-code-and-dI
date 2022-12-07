@@ -59,6 +59,7 @@ class AuthViewModel @Inject constructor(
             viewModelScope.launch {
                 signUpUseCase.execute(SignUpUseCase.Request(User(credentials.mail, credentials.password)))
                     .map {
+                        Log.i(" register viewmodal ", "submit: $it")
                         EntityMapper.convertToAuthState(it)
                     }.onEach {
                         when (it) {

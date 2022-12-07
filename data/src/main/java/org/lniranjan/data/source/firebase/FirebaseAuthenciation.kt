@@ -1,7 +1,7 @@
 package org.lniranjan.data.source.firebase
 
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
+import android.util.Log
+import org.lniranjan.domain.entity.Result as Result1
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -35,15 +35,7 @@ class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth
          }
     }
 
-    override suspend fun signUp(user: User) : Flow<User> {
-          try {
-              return flow {
-                  val authResult  = firebaseAuth.createUserWithEmailAndPassword(user.mail,user.password).await()
-                  val firebaseUser = authResult.user
-                  firebaseUser?.let { User(it.uid,it.email!!) }?.let { emit(it) }
-              }
-          } catch (e: Exception) {
-              throw e
-          }
-    }
+    override suspend fun signUp(user: User): Flow<User> = firebaseAuth.createUserWithEmailAndPassword(user.mail,user.password).
+    await()
+        .user?.let { User(it.uid,it.email!!) }?.let { flow { emit(it) } }!!
 }

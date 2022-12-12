@@ -15,7 +15,6 @@ object EntityMapper {
     }
 
     fun convertToAuthState(response: SignUpUseCase.Response): UiState<Any>? {
-        Log.i("EntityMapper", "convertToAuthState: $response")
         return when (response.result) {
             is Success -> {
                 UiState.Success((response.result as Success<Any>).data!!)

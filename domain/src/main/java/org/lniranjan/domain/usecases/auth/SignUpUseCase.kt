@@ -14,11 +14,13 @@ class SignUpUseCase (
     data class Request(val user: User) : UseCase.Request 
     data class Response(val result: org.lniranjan.domain.entity.Result<Any>) : UseCase.Response
 
-    override suspend fun process(request: Request): Flow<Response> =authenciation.signUp(request.user)
-        .map {
-            Log.i("SignUpUseCase 345 ", "process: $it")
-            Response(it)
-        }
-
+    override suspend fun process(request: Request): Flow<Response> {
+        val para = authenciation.signUp(request.user)
+            .map {
+                Response(it)
+            }
+        Log.i(" Para ", "process: ${para.first().result.toString()}")
+    return para
+    }
 
 }

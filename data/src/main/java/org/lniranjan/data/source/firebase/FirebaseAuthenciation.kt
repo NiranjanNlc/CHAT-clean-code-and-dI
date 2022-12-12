@@ -42,7 +42,7 @@ class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth
             firebaseAuth.createUserWithEmailAndPassword(user.mail, user.password).await()
                 .user?.let { User(userId = it.uid,mail = it.email!!) }
                 ?.let {
-                    Log.i("SignUpUseCase", "process: $it")
+                    Log.i("SignUpUseCase hjjj" , "process: $it")
                     flow { emit(Result1.Success(it)) } }!!
         } catch (e: Exception) {
             Log.e("FirebaseAuthenciation", "Error in FirebaseAuthenciation", e)

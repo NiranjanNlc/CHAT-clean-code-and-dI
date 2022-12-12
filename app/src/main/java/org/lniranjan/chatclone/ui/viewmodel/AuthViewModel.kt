@@ -7,7 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -55,29 +57,34 @@ class AuthViewModel @Inject constructor(
     fun register(credentials: Credentials) {
         Log.i(" regisdter", "submit: $credentials")
 
-            viewModelScope.launch {
-                signUpUseCase.process(SignUpUseCase.Request(User(credentials.mail, credentials.password)))
-                    .map {
-                        Log.i(" register viewmodal ", "submit: $it")
-                        EntityMapper.convertToAuthState(it)
-                    }.onEach {
-                        when (it) {
-                            is UiState.Success -> {
-                                _user.value = AuthState(data = it.data as User)
-                            }
-                            is UiState.Error -> {
-                                _user.value = AuthState(error = it.errorMessage)
-                            }
-                            is UiState.Loading -> {
-                                _user.value = AuthState(isLoading = true)
-                            }
-                            else -> {
-                                    // do nthing why should i care about other states
-                            }
-                        }
-                    }
-            }
-    }
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = signUpUseCase.execute(
+                SignUpUseCase.Request(
+                    User(
+                        credentials.mail,
+                        credentials.password
+                    )
+                )
+            )
+            Log.i(" regisdter", "submit: ${_user.value.toString()}")
+            val uiState = EntityMapper.convertToAuthState(result.first())
+            Log.i(" Ui state", "submit: ${uiState.toString()}")
+            when (uiState) {
+                is UiState.Success -> {
+                    _user.value = AuthState(uiState.data as User)
+                }
+                is UiState.Error -> {
+                    _user.value = AuthState(error = uiState.errorMessage)
+                }
+                is UiState.Loading -> {
+                    _user.value = AuthState(isLoading = true)
+                }
+                else -> {
 
+                }
+            }
+            Log.i(" auth state ... ", "submit: ${_user.value.toString()}")
+        }
+    }
 
 }

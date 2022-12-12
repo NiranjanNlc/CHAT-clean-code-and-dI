@@ -10,7 +10,7 @@ abstract class UseCase<I: UseCase.Request, O : UseCase.Response>(private val con
         return process(request)
             .flowOn(configuration.dispatcher)
             .catch {
-                Log.e("UseCase", "Error in UseCase", it)
+//                Log.e("UseCase", "Error in UseCase", it)
             }
     }
     abstract suspend fun process(request:I): Flow<O>

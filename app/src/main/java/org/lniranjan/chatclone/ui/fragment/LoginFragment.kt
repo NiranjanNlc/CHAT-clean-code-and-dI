@@ -38,21 +38,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setObsever() {
-        viewModel._user.observe(viewLifecycleOwner,{
-                if (it.data != null) {
-                    requireActivity().toast("Success")
-                    view?.let { it1 ->
-                        Navigation.findNavController(it1)
-                            .navigate(R.id.action_loginFragment_to_settingFragment)
-                    }
-                } else if (it.error != null) {
-                    requireActivity().toast(it.error)
-                } else {
-                    // donothing
-                }
-            }
-        )
-        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     public fun enableLogin() {

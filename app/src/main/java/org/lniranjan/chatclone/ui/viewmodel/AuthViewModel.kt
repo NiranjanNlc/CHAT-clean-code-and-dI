@@ -31,27 +31,39 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
     val _user  = MutableLiveData<AuthState>()
 
-   suspend fun login(credentials: Credentials) {
-                  loginusecase.execute(LoginUseCase.Request(credentials.mail, credentials.password))
-                      .map {
-                           EntityMapper.convert(it)
-                      }.onEach {
-                          when(it)
-                          {
-                              is UiState.Success-> {
-                                  _user.value = AuthState(it.data as User)
-                              }
-                              is UiState.Error -> {
-                                  _user.value = AuthState(error = it.errorMessage)
-                              }
-                              is UiState.Loading ->  {
-                                  _user.value = AuthState(isLoading = true)
-                              }
-                              else -> {
+    fun login(credentials: Credentials) {
+        Log.i(" login " , credentials.toString())
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = loginusecase.execute(
+                LoginUseCase.Request(credentials.mail,credentials.password)
+            )
+            Log.i(" login  ui state ", "submit: ${result.first()}")
+            val uiState = EntityMapper.convert(result.first())
+            Log.i(" login  ui state ", "submit: $uiState")
+            try {
+                when(uiState)
+                {
+                    is UiState.Success-> {
+                        _user.postValue(AuthState(uiState.data as User))
+                    }
+                    is UiState.Error -> {
+                        _user.postValue(AuthState(error = uiState.errorMessage))
+                    }
+                    is UiState.Loading ->  {
+                        _user.postValue(AuthState(isLoading = true))
+                    }
+                    else -> {
 
-                              }
-                          }
-                      }
+                    }
+                }
+            }
+            catch (e: Exception)
+            {
+                Log.i(" regisdter ui state ", "submit: $e")
+            }
+
+            Log.i(" auth state ... ", "submit: ${_user.value.toString()}")
+        }
     }
 
     fun register(credentials: Credentials) {

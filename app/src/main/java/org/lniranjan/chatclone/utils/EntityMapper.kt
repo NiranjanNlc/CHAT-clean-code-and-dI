@@ -10,7 +10,17 @@ import org.lniranjan.domain.usecases.auth.SignUpUseCase
 object EntityMapper {
 
     fun convert(response: LoginUseCase.Response): UiState<Any>? {
-        return UiState.Loading as UiState<Any>
+        return when (response.result) {
+            is Success -> {
+                UiState.Success((response.result as Success<Any>).data)
+            }
+            is Error -> {
+                UiState.Error((response.result as Error).exception.localizedMessage.orEmpty())
+            }
+            else -> {
+                UiState.Loading
+            }
+        }
     }
 
     fun convertToAuthState(response: SignUpUseCase.Response): UiState<Any>? {

@@ -111,8 +111,6 @@ class LoginFragment : Fragment() {
     }
 
     private fun login(email: String, passw: String) {
-        lifecycleScope.launch {
             viewModel.login(Credentials(mail = email, password = passw))
-        }
     }
 }

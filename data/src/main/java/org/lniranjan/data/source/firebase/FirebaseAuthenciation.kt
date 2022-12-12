@@ -12,12 +12,19 @@ import org.lniranjan.domain.repo.Authenciation
 import javax.inject.Inject
 
 class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth) : Authenciation {
-    override suspend fun login(email: String, password: String): Flow<Boolean> {
-        return flow {
-            if (firebaseAuth.signInWithEmailAndPassword(email, password)?.await()?.user != null) {
-                emit(true)
-            }
-            emit(false)
+    override suspend fun login(email: String, password: String):Flow<Result1<Any>> {
+        return try{
+            firebaseAuth.signInWithEmailAndPassword(email, password)?.await()
+                ?.user?.let { User(userId = it.uid, mail = it.email!!) }
+            ?.let {
+                Log.i("SignUpUseCase hjjj", "process: $it")
+                flow { emit(Result1.Success(it)) }
+            }!!
+        }
+        catch (e:Exception)
+        {
+            Log.e("FirebaseAuthenciation", "Error in FirebaseAuthenciation"+ e.message)
+            flow { emit(Result1.Error(UseCaseException.createFromThrowable(e))) }
         }
     }
 

@@ -1,8 +1,7 @@
 package org.lniranjan.chatclone.utils
 
-import android.util.Log
+
 import org.lniranjan.chatclone.ui.state.UiState
-import org.lniranjan.domain.entity.Result
 import org.lniranjan.domain.entity.Result.Success
 import org.lniranjan.domain.entity.Result.Error
 import org.lniranjan.domain.usecases.auth.LoginUseCase
@@ -17,10 +16,10 @@ object EntityMapper {
     fun convertToAuthState(response: SignUpUseCase.Response): UiState<Any>? {
         return when (response.result) {
             is Success -> {
-                UiState.Success((response.result as Success<Any>).data!!)
+                UiState.Success((response.result as Success<Any>).data)
             }
             is Error -> {
-                UiState.Error((response.result as Result.Error).exception.localizedMessage.orEmpty())
+                UiState.Error((response.result as Error).exception.localizedMessage.orEmpty())
             } else -> {
                 UiState.Loading
             }

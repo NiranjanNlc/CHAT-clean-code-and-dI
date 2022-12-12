@@ -66,23 +66,31 @@ class AuthViewModel @Inject constructor(
                     )
                 )
             )
-            Log.i(" regisdter", "submit: ${_user.value.toString()}")
-            val uiState = EntityMapper.convertToAuthState(result.first())
-            Log.i(" Ui state", "submit: ${uiState.toString()}")
-            when (uiState) {
-                is UiState.Success -> {
-                    _user.value = AuthState(uiState.data as User)
-                }
-                is UiState.Error -> {
-                    _user.value = AuthState(error = uiState.errorMessage)
-                }
-                is UiState.Loading -> {
-                    _user.value = AuthState(isLoading = true)
-                }
-                else -> {
 
+            val uiState = EntityMapper.convertToAuthState(result.first())
+            Log.i(" regisdter ui state ", "submit: $uiState")
+            try {
+                when(uiState)
+                {
+                    is UiState.Success-> {
+                        _user.postValue(AuthState(uiState.data as User))
+                    }
+                    is UiState.Error -> {
+                        _user.postValue(AuthState(error = uiState.errorMessage))
+                    }
+                    is UiState.Loading ->  {
+                        _user.postValue(AuthState(isLoading = true))
+                    }
+                    else -> {
+
+                    }
                 }
             }
+            catch (e: Exception)
+            {
+                Log.i(" regisdter ui state ", "submit: $e")
+            }
+
             Log.i(" auth state ... ", "submit: ${_user.value.toString()}")
         }
     }

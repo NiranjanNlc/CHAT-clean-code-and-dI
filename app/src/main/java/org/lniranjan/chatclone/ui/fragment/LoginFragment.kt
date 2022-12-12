@@ -38,6 +38,16 @@ class LoginFragment : Fragment() {
     }
 
     private fun setObsever() {
+        viewModel._user.observe(viewLifecycleOwner, {
+            if(it.data!= null)
+            {
+                Navigation.findNavController(bindind.root).navigate(R.id.action_loginFragment_to_chatListFragment)
+            }
+            else if(it.error != null)
+            {
+                requireContext().toast(it.error)
+            }
+        })
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

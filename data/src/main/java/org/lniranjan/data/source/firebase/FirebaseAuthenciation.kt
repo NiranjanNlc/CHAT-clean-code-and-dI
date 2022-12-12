@@ -45,7 +45,7 @@ class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth
                     Log.i("SignUpUseCase hjjj" , "process: $it")
                     flow { emit(Result1.Success(it)) } }!!
         } catch (e: Exception) {
-            Log.e("FirebaseAuthenciation", "Error in FirebaseAuthenciation", e)
+            Log.e("FirebaseAuthenciation", "Error in FirebaseAuthenciation"+ e.message)
             flow { emit(Result1.Error(UseCaseException.createFromThrowable(e))) }
         }
     }

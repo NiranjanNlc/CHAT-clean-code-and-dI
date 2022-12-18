@@ -72,19 +72,18 @@ class SettingActivity : AppCompatActivity() {
             )
         }
     }
-
+    val resltPhot =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val selectedImageUri = result.data?.data
+                if (selectedImageUri != null) {
+                    bindind.setProfileImage.setImageURI(selectedImageUri)
+                }
+            }
+        }
     fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*" // only image
-        val resltPhot =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val selectedImageUri = result.data?.data
-                    if (selectedImageUri != null) {
-                        bindind.setProfileImage.setImageURI(selectedImageUri)
-                    }
-                }
-            }
         resltPhot.launch(intent)
     }
 

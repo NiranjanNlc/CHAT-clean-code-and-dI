@@ -26,8 +26,9 @@ class FireBaseModule {
         return FirebaseAuth.getInstance()
     }
 
-    fun provideFireBaseDataBaseRefrence (): DatabaseReference {
-        return FirebaseDatabase.getInstance().reference
+    @Provides
+    fun provideFireBaseDataBase (): FirebaseDatabase {
+        return FirebaseDatabase.getInstance()
     }
 
     fun provideFireBaseStorage (): FirebaseStorage {
@@ -35,7 +36,9 @@ class FireBaseModule {
     }
 
     @Provides
-    fun provideFireBaseProfile ( database : FirebaseDatabase ): FireBaseProFile {
+    fun provideFireBaseProfile (
+        database : FirebaseDatabase ): FireBaseProFile {
         return FireBaseProFile(database.reference)
     }
+
 }

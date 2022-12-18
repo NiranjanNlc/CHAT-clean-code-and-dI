@@ -31,8 +31,5 @@ class RepoModule {
         messaging: Firebasemessaging
     ): Messaging = MessagingImpl(messaging)
 
-    @Provides
-    fun provideProfileRepo(
-        fireBaseProFile: FireBaseProFile): Profile = ProfileImpl(fireBaseProFile)
 }
 

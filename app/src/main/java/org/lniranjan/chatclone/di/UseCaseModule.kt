@@ -5,6 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.Dispatchers
+import org.lniranjan.data.repo.ProfileImpl
+import org.lniranjan.data.source.firebase.FireBaseProFile
 import org.lniranjan.domain.repo.Authenciation
 import org.lniranjan.domain.repo.Chatting
 import org.lniranjan.domain.repo.Messaging
@@ -91,4 +93,9 @@ class UseCaseModule {
         configuration: UseCase.Configuration,
         profile: Profile
     ): UpdateProfilePhoto= UpdateProfilePhoto(configuration, profile)
+
+    @Provides
+    fun providesProfile (
+     fireBaseProFile: FireBaseProFile
+    ) : Profile= ProfileImpl(fireBaseProFile)
 }

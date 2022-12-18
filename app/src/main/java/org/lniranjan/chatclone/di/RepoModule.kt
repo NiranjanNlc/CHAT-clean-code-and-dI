@@ -23,13 +23,16 @@ class RepoModule {
 
     @Provides
     fun provideChatRepo(
-        chats: FireBaseChats) : Chatting
-            = ChattingImpl(chats)
+        chats: FireBaseChats
+    ): Chatting = ChattingImpl(chats)
+
     @Provides
     fun provideMessageRepo(
-        messaging: Firebasemessaging): Messaging
-            = MessagingImpl( messaging)
+        messaging: Firebasemessaging
+    ): Messaging = MessagingImpl(messaging)
+
     @Provides
-    fun provideProfileRepo( fireBaseProFile: FireBaseProFile):Profile
-            = ProfileImpl(fireBaseProFile)
+    fun provideProfileRepo(
+        fireBaseProFile: FireBaseProFile): Profile = ProfileImpl(fireBaseProFile)
 }
+

@@ -8,6 +8,7 @@ import org.lniranjan.domain.usecases.profile.GetProfileDetail
 import org.lniranjan.domain.usecases.profile.UpdateProfileDetail
 import org.lniranjan.domain.usecases.profile.UpdateProfilePhoto
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -15,6 +16,7 @@ import org.lniranjan.chatclone.modal.UserDetail
 import org.lniranjan.domain.entity.User
 import javax.inject.Inject
 
+@HiltViewModel
 class SettingViewModel @Inject constructor(
     val getProfileDetail: GetProfileDetail,
     val updateProfileDetail: UpdateProfileDetail,

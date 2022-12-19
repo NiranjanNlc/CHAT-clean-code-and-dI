@@ -31,7 +31,26 @@ class SettingActivity : AppCompatActivity() {
         setContentView(bindind.root)
         //  change the  title of the action bar
         supportActionBar?.title = " Update  the profile info"
+        //get user info from intent and use the id from firebase for testing purposes only
+        val userId = intent.getLongExtra("userDetail", 0)
+        loadAndSetUserIinfo(userId)
         setObserver()
+        setOnClickListenerForProfilePhoto()
+    }
+
+    private fun loadAndSetUserIinfo(userId: Long) {
+        TODO("Not yet implemented")
+    }
+
+
+    private fun setObserver() {
+        viewModel._profileDetail.observe(this, {
+            bindind.profileDetail = it
+        })
+    }
+
+
+    private fun setOnClickListenerForProfilePhoto() {
         bindind.setProfileImage.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     this,
@@ -44,22 +63,6 @@ class SettingActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun setObserver() {
-        viewModel._profileDetail.observe(this, {
-            bindind.profileDetail = it
-        })
-    }
-
-    private fun updateProfileDetail() {
-
-    }
-
-    private fun uploadProfilePhoto() {
-        //askes for permsion pf photo
-
-    }
-
     fun requestPhotoPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED
@@ -73,6 +76,16 @@ class SettingActivity : AppCompatActivity() {
         }
     }
     val resltPhot =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val selectedImageUri = result.data?.data
+                if (selectedImageUri != null) {
+                    viewModel.uploadImage(selectedImageUri)
+                    bindind.setProfileImage.setImageURI(selectedImageUri)
+                }
+            }
+        }
+    val cropPhoto =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val selectedImageUri = result.data?.data

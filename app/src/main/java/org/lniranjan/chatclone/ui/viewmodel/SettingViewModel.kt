@@ -1,5 +1,6 @@
 package org.lniranjan.chatclone.ui.viewmodel
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.lniranjan.chatclone.modal.UserDetail
 import org.lniranjan.domain.entity.User
+import java.net.URI
 import javax.inject.Inject
 
 @HiltViewModel
@@ -51,7 +53,7 @@ class SettingViewModel @Inject constructor(
     }
 
     /* Get profile detaile */
-    fun updateProfilePhoto(profileDetail: UserDetail) {
+    fun updateProfilePhoto(uri: URI) {
         viewModelScope.launch {
             updateProfilePhoto.process(UpdateProfilePhoto.Request(currenUser.value!!))
                 .onEach {
@@ -61,4 +63,12 @@ class SettingViewModel @Inject constructor(
     }
 }
 
+    fun uploadImage(selectedImageUri: Uri) {
+        viewModelScope.launch {
+            updateProfilePhoto.process(UpdateProfilePhoto.Request(currenUser.value!!))
+                .onEach {
+
+                }.launchIn(viewModelScope)
+        }
+    }
 }

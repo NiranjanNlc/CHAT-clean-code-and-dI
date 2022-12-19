@@ -10,12 +10,13 @@ import org.lniranjan.domain.usecases.profile.UpdateProfileDetail
 import org.lniranjan.domain.usecases.profile.UpdateProfilePhoto
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.lniranjan.chatclone.modal.UserDetail
 import org.lniranjan.domain.entity.User
-import java.net.URI
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,47 +29,47 @@ class SettingViewModel @Inject constructor(
     val _profileDetail: LiveData<UserDetail> = profileDetail
 
     val currenUser = MutableLiveData<User>()
+    val currentUserId : LiveData<String> = MutableLiveData<String>("T520rsExXWdb5K4LqcHK21Mdtjo2")
 
     init {
       Log.i(" strted view modal ", "started view modal")
      }
 
     /* Get profile detaile */
-    fun getProfileDetail(user: User) {
-        viewModelScope.launch {
-            getProfileDetail.process(GetProfileDetail.Request(user))
-                .onEach {
+    fun getProfileDetail(userId: String) {
 
-                }.launchIn(viewModelScope)
+//        viewModelScope.launch {
+//            val result = getProfileDetail.process(GetProfileDetail.Request(userId))
+//            Log.i("SettingViewModel", "getProfileDetail: ${result.first().profile}")
+//        }
     }
+        /* update profile detaile */
+        fun updateProfileDetail(profileDetail: UserDetail) {
+            viewModelScope.launch {
+                updateProfileDetail.process(UpdateProfileDetail.Request(currenUser.value!!))
+                    .onEach {
 
-    /* update profile detaile */
-    fun updateProfileDetail(profileDetail: UserDetail) {
-        viewModelScope.launch {
-            updateProfileDetail.process(UpdateProfileDetail.Request(currenUser.value!!))
-                .onEach {
-
-                }.launchIn(viewModelScope)
+                    }.launchIn(viewModelScope)
+            }
         }
-    }
+    /* update profile photo */
 
-    /* Get profile detaile */
-    fun updateProfilePhoto(uri: URI) {
-        viewModelScope.launch {
-            updateProfilePhoto.process(UpdateProfilePhoto.Request(currenUser.value!!))
-                .onEach {
+    fun uploadProfileImage(selectedImageUri: Uri) {
 
-                }.launchIn(viewModelScope)
-        }
-    }
-}
+        Log.i(" uploadProfileImage ","Niranjan Lamichhane ")
+            viewModelScope.launch(Dispatchers.IO) {
+                Log.i(" uploadProfileImage ", "${selectedImageUri.path.toString()} uploadProfileImage: $selectedImageUri")
+              try {
+                  val result = updateProfilePhoto.process(UpdateProfilePhoto.Request(
+                      selectedImageUri.toString(),
+                      currentUserId.value!!
+                  ))
+                  Log.i(" uploadProfileImage ", "submit: ${result.first()}")
+              }
+                catch (e: Exception) {
+                    Log.i(" uploadProfileImage ", "uploadProfileImage: ${e.message}")
+                }
 
-    fun uploadImage(selectedImageUri: Uri) {
-        viewModelScope.launch {
-            updateProfilePhoto.process(UpdateProfilePhoto.Request(currenUser.value!!))
-                .onEach {
-
-                }.launchIn(viewModelScope)
         }
     }
 }

@@ -6,15 +6,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.registerForActivityResult
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import org.lniranjan.chatclone.databinding.ActivitySettingBinding
-import org.lniranjan.chatclone.modal.UserDetail
+import org.lniranjan.chatclone.ui.fragment.LoginFragment
 import org.lniranjan.chatclone.ui.viewmodel.SettingViewModel
 
 @AndroidEntryPoint
@@ -32,14 +32,15 @@ class SettingActivity : AppCompatActivity() {
         //  change the  title of the action bar
         supportActionBar?.title = " Update  the profile info"
         //get user info from intent and use the id from firebase for testing purposes only
-        val userId = intent.getLongExtra("userDetail", 0)
-        loadAndSetUserIinfo(userId)
+        val userId = intent.getStringExtra("userId")?:"T520rsExXWdb5K4LqcHK21Mdtjo2"
+        loadAndSetUserIinfo(userId.toString())
         setObserver()
         setOnClickListenerForProfilePhoto()
     }
 
-    private fun loadAndSetUserIinfo(userId: Long) {
-        TODO("Not yet implemented")
+    private fun loadAndSetUserIinfo(userId: String?) {
+        Log.i("SettingActivity", "loadAndSetUserIinfo: $userId")
+//        viewModel.getProfileDetail(userId.toString())
     }
 
 
@@ -80,20 +81,12 @@ class SettingActivity : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val selectedImageUri = result.data?.data
                 if (selectedImageUri != null) {
-                    viewModel.uploadImage(selectedImageUri)
+                    viewModel.uploadProfileImage(selectedImageUri)
                     bindind.setProfileImage.setImageURI(selectedImageUri)
                 }
             }
         }
-    val cropPhoto =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val selectedImageUri = result.data?.data
-                if (selectedImageUri != null) {
-                    bindind.setProfileImage.setImageURI(selectedImageUri)
-                }
-            }
-        }
+
     fun selectImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*" // only image

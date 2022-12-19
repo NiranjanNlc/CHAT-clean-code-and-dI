@@ -4,6 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,14 +33,16 @@ class FireBaseModule {
     }
 
     @Provides
-    fun provideFireBaseStorage (): FirebaseStorage {
-        return FirebaseStorage.getInstance()
+    fun provideFireBaseStorage (): StorageReference {
+        return FirebaseStorage.getInstance().reference
     }
 
     @Provides
     fun provideFireBaseProfile (
-        database : FirebaseDatabase ): FireBaseProFile {
-        return FireBaseProFile(database.reference)
+        database : FirebaseDatabase ,
+    storageReference: StorageReference): FireBaseProFile {
+        return FireBaseProFile(database.reference,
+                                    storageReference)
     }
 
 }

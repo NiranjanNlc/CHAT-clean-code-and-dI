@@ -11,7 +11,7 @@ class GetProfileDetail @Inject constructor (
     configuration: Configuration,
     private val  profile:Profile
 ) : UseCase<GetProfileDetail.Request, GetProfileDetail.Response>(configuration) {
-    data class Request(val user: User) : UseCase.Request
+    data class Request(val user: String) : UseCase.Request
     data class Response(val profile: User) : UseCase.Response
     override suspend fun process(request: Request): Flow<Response> =  profile.getProfile(request.user)
         .map {

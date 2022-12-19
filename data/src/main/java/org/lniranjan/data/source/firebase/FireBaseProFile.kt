@@ -14,10 +14,10 @@ class FireBaseProFile  @Inject constructor(
     private val rootRef : DatabaseReference,
     private val storageRef : StorageReference
 ) {
-    fun updateProfile(profileDetail: User): Flow<Boolean> {
+    fun updateProfile(profileDetail: HashMap<String, String>, userid: String): Flow<Boolean> {
         return flow {
             val result = rootRef.child("users")
-                .child(profileDetail.userId.toString())
+                .child(userid)
                 .setValue(profileDetail.toString())
             result.await()
             if (result.isSuccessful) {

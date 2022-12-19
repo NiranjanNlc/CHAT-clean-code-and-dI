@@ -8,8 +8,8 @@ import org.lniranjan.domain.repo.Profile
 class ProfileImpl( private val firebaseProfile : FireBaseProFile) : Profile {
 
 
-    override fun updateProfile(profileDetail: User): Flow<Boolean> {
-          return firebaseProfile.updateProfile(profileDetail)
+    override fun updateProfile(profileDetail: HashMap<String, String>, userid: String): Flow<Boolean> {
+          return firebaseProfile.updateProfile(profileDetail,userid)
         }
 
     override fun getProfile(user: String): Flow<User> {

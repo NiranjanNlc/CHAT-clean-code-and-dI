@@ -10,11 +10,11 @@ class UpdateProfileDetail @Inject constructor (
     configuration: Configuration,
     private val  profile: Profile
 ) : UseCase<UpdateProfileDetail.Request, UpdateProfileDetail.Response>(configuration) {
-    data class Request(val updatedProfile: HashMap<String, String>, val toString: String) : UseCase.Request
+    data class Request(val updatedProfile: HashMap<String, String>, val userid: String) : UseCase.Request
     data class Response(val updateStatus: Boolean) : UseCase.Response
 
     override suspend fun process(request: Request): Flow<Response> =
-        profile.updateProfile(request.updatedProfile)
+        profile.updateProfile(request.updatedProfile,request.userid)
             .map {
                 Response(it)
             }

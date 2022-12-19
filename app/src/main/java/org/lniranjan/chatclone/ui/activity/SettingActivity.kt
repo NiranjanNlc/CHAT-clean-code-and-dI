@@ -14,8 +14,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import org.lniranjan.chatclone.databinding.ActivitySettingBinding
+import org.lniranjan.chatclone.modal.UserDetail
 import org.lniranjan.chatclone.ui.fragment.LoginFragment
 import org.lniranjan.chatclone.ui.viewmodel.SettingViewModel
+import org.lniranjan.domain.entity.User
 
 @AndroidEntryPoint
 class SettingActivity : AppCompatActivity() {
@@ -46,7 +48,7 @@ class SettingActivity : AppCompatActivity() {
 
     private fun setObserver() {
         viewModel._profileDetail.observe(this, {
-            bindind.profileDetail = it
+            bindind.profileDetail = UserDetail(it.userName, it.profilePic, it.bio)
         })
     }
 
@@ -62,6 +64,12 @@ class SettingActivity : AppCompatActivity() {
             } else {
                 selectImage()
             }
+        }
+        bindind.updateSettingsBtn.setOnClickListener {
+            viewModel.updateProfileDetail(
+                UserDetail( bindind.setUserName.text.toString(),
+                bindind.setBio.text.toString())
+            )
         }
     }
     fun requestPhotoPermission() {

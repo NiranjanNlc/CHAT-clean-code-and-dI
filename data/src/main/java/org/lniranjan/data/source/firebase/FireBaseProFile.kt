@@ -16,8 +16,18 @@ class FireBaseProFile  @Inject constructor(
 ) {
     fun updateProfile(profileDetail: User): Flow<Boolean> {
         return flow {
-            rootRef.child("users").child(profileDetail.userId !!).setValue(profileDetail).await()
-            emit(true)
+            val result = rootRef.child("users")
+                .child(profileDetail.userId.toString())
+                .setValue(profileDetail.toString())
+            result.await()
+            if (result.isSuccessful) {
+                emit(true)
+            } else
+            {
+                emit(false)
+                Log.i("photourl1", " photourl  updateProfilePhoto: $result")
+
+            }
         }
     }
 

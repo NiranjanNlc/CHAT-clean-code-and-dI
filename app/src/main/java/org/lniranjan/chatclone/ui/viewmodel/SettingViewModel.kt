@@ -25,30 +25,37 @@ class SettingViewModel @Inject constructor(
     val updateProfileDetail: UpdateProfileDetail,
     val updateProfilePhoto: UpdateProfilePhoto
 ): ViewModel() {
-    val profileDetail = MutableLiveData<UserDetail>()
-    val _profileDetail: LiveData<UserDetail> = profileDetail
+    val profileDetail = MutableLiveData<User>()
+    val _profileDetail: LiveData<User> = profileDetail
 
     val currenUser = MutableLiveData<User>()
     val currentUserId : LiveData<String> = MutableLiveData<String>("T520rsExXWdb5K4LqcHK21Mdtjo2")
 
     init {
+        getProfileDetail()
       Log.i(" strted view modal ", "started view modal")
      }
 
     /* Get profile detaile */
-    fun getProfileDetail(userId: String) {
-
-//        viewModelScope.launch {
-//            val result = getProfileDetail.process(GetProfileDetail.Request(userId))
-//            Log.i("SettingViewModel", "getProfileDetail: ${result.first().profile}")
-//        }
+    fun getProfileDetail() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = getProfileDetail.process(GetProfileDetail.Request(currentUserId.value.toString()))
+            result.onEach { dataState ->
+                    profileDetail.postValue(dataState.profile)
+                }
+            Log.i("SettingViewModel", "getProfileDetail: ${result.first().profile}")
+        }
     }
         /* update profile detaile */
         fun updateProfileDetail(profileDetail: UserDetail) {
-            viewModelScope.launch {
-                updateProfileDetail.process(UpdateProfileDetail.Request(currenUser.value!!))
+            val profileMap: HashMap<String, String> = HashMap()
+            profileMap["profilePhoto"] = profileDetail.profilePhoto.toString()
+            profileMap["name"] = profileDetail.name.toString()
+            profileMap["bio"] = profileDetail.bio.toString()
+            viewModelScope.launch (Dispatchers.IO){
+                updateProfileDetail.process(UpdateProfileDetail.Request(profileMap, currentUserId.value.toString()))
                     .onEach {
-
+                        Log.i("SettingViewModel", "updateProfileDetail: ${it.updateStatus}")
                     }.launchIn(viewModelScope)
             }
         }

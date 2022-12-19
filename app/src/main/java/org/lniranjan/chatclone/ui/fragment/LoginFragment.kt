@@ -1,5 +1,6 @@
 package org.lniranjan.chatclone.ui.fragment
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +11,12 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import org.lniranjan.chatclone.R
 import org.lniranjan.chatclone.databinding.FragmentLoginBinding
 import org.lniranjan.chatclone.modal.Credentials
+import org.lniranjan.chatclone.ui.activity.SettingActivity
 import org.lniranjan.chatclone.ui.viewmodel.AuthViewModel
 import org.lniranjan.chatclone.utils.toast
  
@@ -41,7 +41,7 @@ class LoginFragment : Fragment() {
         viewModel._user.observe(viewLifecycleOwner, {
             if(it.data!= null)
             {
-                Navigation.findNavController(bindind.root).navigate(R.id.action_loginFragment_to_chatListFragment)
+                navigateTonext(it.data.userName , it.data.userId)
             }
             else if(it.error != null)
             {
@@ -49,6 +49,20 @@ class LoginFragment : Fragment() {
             }
         })
     }
+
+    private fun navigateTonext(userName: String?, userId: String?) {
+        if (userName != null) {
+            Navigation.findNavController(bindind.root)
+                .navigate(R.id.action_loginFragment_to_chatListFragment)
+        }
+        else
+        {
+            // launch main activity
+            val intent = Intent(requireContext() ,SettingActivity::class.java)
+            intent.putExtra("userId",userId)
+            startActivity(intent);
+        }
+        }
 
     @RequiresApi(Build.VERSION_CODES.M)
     public fun enableLogin() {

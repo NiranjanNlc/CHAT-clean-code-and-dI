@@ -15,6 +15,10 @@ class ProfileImpl( private val firebaseProfile : FireBaseProFile) : Profile {
     override fun getProfile(user: User): Flow<User> {
          return firebaseProfile.getProfile(user)
     }
+
+    override fun updateProfilePhoto(profileDetail: String, userId: String): Flow<Boolean> {
+        return firebaseProfile.updateProfilePhoto(profileDetail,userId)
+    }
 }
 
 

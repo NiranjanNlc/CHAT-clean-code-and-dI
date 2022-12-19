@@ -31,6 +31,7 @@ class FireBaseModule {
         return FirebaseDatabase.getInstance()
     }
 
+    @Provides
     fun provideFireBaseStorage (): FirebaseStorage {
         return FirebaseStorage.getInstance()
     }

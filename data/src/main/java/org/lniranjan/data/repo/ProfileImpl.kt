@@ -12,7 +12,7 @@ class ProfileImpl( private val firebaseProfile : FireBaseProFile) : Profile {
           return firebaseProfile.updateProfile(profileDetail)
         }
 
-    override fun getProfile(user: User): Flow<User> {
+    override fun getProfile(user: String): Flow<User> {
          return firebaseProfile.getProfile(user)
     }
 

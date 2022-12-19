@@ -4,12 +4,12 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,13 +19,14 @@ import org.lniranjan.chatclone.modal.Credentials
 import org.lniranjan.chatclone.ui.activity.SettingActivity
 import org.lniranjan.chatclone.ui.viewmodel.AuthViewModel
 import org.lniranjan.chatclone.utils.toast
- 
+
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private lateinit var bindind : FragmentLoginBinding 
     private val viewModel by viewModels<AuthViewModel>()
+    val USERID: String = "userId"
  
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,8 +60,9 @@ class LoginFragment : Fragment() {
         {
             // launch main activity
             val intent = Intent(requireContext() ,SettingActivity::class.java)
+            intent.putExtra(USERID, userId.toString())
             intent.putExtra("userId",userId)
-            startActivity(intent);
+            startActivity(intent)
         }
         }
 

@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import org.lniranjan.chatclone.databinding.ActivitySettingBinding
 import org.lniranjan.chatclone.modal.ProfileDetail
@@ -23,7 +24,7 @@ class SettingActivity : AppCompatActivity() {
     private lateinit var bindind: ActivitySettingBinding
     private val viewModel by viewModels<SettingViewModel>()
     private val REQUEST_PHOTO_PERMISSION = 1
-    private val SELECT_IMAGE = 1
+    private var loadingImage = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcloudinary.com%2Fblog%2Feasy_image_loading_and_optimization_with_cloudinary_and_fresco&psig=AOvVaw2WgdiYXEK57EcYEJNpYopL&ust=1671607043091000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMil5dLTh_wCFQAAAAAdAAAAABAD"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,7 @@ class SettingActivity : AppCompatActivity() {
 
     private fun loadAndSetUserIinfo(userId: String?) {
         Log.i("SettingActivity", "loadAndSetUserIinfo: $userId")
+//        Glide.with(this).load(loadingImage).into(bindind.setProfileImage)
 //        viewModel.getProfileDetail(userId.toString())
     }
 
@@ -49,6 +51,7 @@ class SettingActivity : AppCompatActivity() {
         viewModel._profileDetail.observe(this, {
             Log.i("SettingActivity", "setObserver: $it")
             bindind.profileDetail = ProfileDetail(it.name, it.profilePhoto, it.bio)
+          loadingImage = it.profilePhoto.toString()
         })
     }
 
@@ -67,8 +70,9 @@ class SettingActivity : AppCompatActivity() {
         }
         bindind.updateSettingsBtn.setOnClickListener {
             viewModel.updateProfileDetail(
-                ProfileDetail( bindind.setUserName.text.toString(),
-                bindind.setBio.text.toString())
+                ProfileDetail(name = bindind.setUserName.text.toString(),
+                bio = bindind.setBio.text.toString(),
+                profilePhoto = bindind.profileDetail?.profilePhoto)
             )
         }
     }

@@ -1,11 +1,13 @@
 package org.lniranjan.chatclone.utils
 
 
+import org.lniranjan.chatclone.modal.ProfileDetail
 import org.lniranjan.chatclone.ui.state.UiState
 import org.lniranjan.domain.entity.Result.Success
 import org.lniranjan.domain.entity.Result.Error
 import org.lniranjan.domain.usecases.auth.LoginUseCase
 import org.lniranjan.domain.usecases.auth.SignUpUseCase
+import org.lniranjan.domain.usecases.profile.GetProfileDetail
 
 object EntityMapper {
 
@@ -34,5 +36,8 @@ object EntityMapper {
                 UiState.Loading
             }
         }
+    }
+    fun convertToProfileDetail(dataState: GetProfileDetail.Response): ProfileDetail {
+      return ProfileDetail(dataState.profile.name,dataState.profile.profilePhoto,dataState.profile.bio)
     }
 }

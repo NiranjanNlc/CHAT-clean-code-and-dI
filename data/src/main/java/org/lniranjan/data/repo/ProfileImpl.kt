@@ -3,6 +3,7 @@ package org.lniranjan.data.repo
 import kotlinx.coroutines.flow.Flow
 import org.lniranjan.data.source.firebase.FireBaseProFile
 import org.lniranjan.domain.entity.User
+import org.lniranjan.domain.entity.UserDetail
 import org.lniranjan.domain.repo.Profile
 
 class ProfileImpl( private val firebaseProfile : FireBaseProFile) : Profile {
@@ -12,7 +13,7 @@ class ProfileImpl( private val firebaseProfile : FireBaseProFile) : Profile {
           return firebaseProfile.updateProfile(profileDetail,userid)
         }
 
-    override fun getProfile(user: String): Flow<User> {
+    override fun getProfile(user: String): Flow<UserDetail> {
          return firebaseProfile.getProfile(user)
     }
 

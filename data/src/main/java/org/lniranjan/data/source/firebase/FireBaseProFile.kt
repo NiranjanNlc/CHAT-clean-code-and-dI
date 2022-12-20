@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import org.lniranjan.domain.entity.User
+import org.lniranjan.domain.entity.UserDetail
 import javax.inject.Inject
 
 class FireBaseProFile  @Inject constructor(   
@@ -31,16 +32,16 @@ class FireBaseProFile  @Inject constructor(
         }
     }
 
-    fun getProfile(user: String): Flow<User> {
+    fun getProfile(user: String): Flow<UserDetail> {
         return flow {
-            rootRef.child("users").child(user).get()
-                .await().children
-                .map {
-                    val profileDetail = it.getValue(User::class.java)
-                    if (profileDetail != null) {
-                        emit(profileDetail)
-                    }
-                }
+         try {
+             val user =   rootRef.child("users/$user").get()
+                 .await()
+             Log.i("photourl1", " photourl  getProfile: ${user.getValue()}")
+             emit(user.getValue(UserDetail::class.java)!!)
+         }catch (e: Exception) {
+             Log.i("expectation" ,"hello mf  $e")
+         }
         }
     }
 

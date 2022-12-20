@@ -15,7 +15,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import org.lniranjan.chatclone.modal.UserDetail
+import org.lniranjan.chatclone.modal.ProfileDetail
+import org.lniranjan.chatclone.utils.EntityMapper
 import org.lniranjan.domain.entity.User
 import javax.inject.Inject
 
@@ -25,8 +26,8 @@ class SettingViewModel @Inject constructor(
     val updateProfileDetail: UpdateProfileDetail,
     val updateProfilePhoto: UpdateProfilePhoto
 ): ViewModel() {
-    val profileDetail = MutableLiveData<User>()
-    val _profileDetail: LiveData<User> = profileDetail
+    val profileDetail = MutableLiveData<ProfileDetail>()
+    val _profileDetail: LiveData<ProfileDetail> = profileDetail
 
     val currenUser = MutableLiveData<User>()
     val currentUserId : LiveData<String> = MutableLiveData<String>("T520rsExXWdb5K4LqcHK21Mdtjo2")
@@ -40,14 +41,13 @@ class SettingViewModel @Inject constructor(
     fun getProfileDetail() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = getProfileDetail.process(GetProfileDetail.Request(currentUserId.value.toString()))
-            result.onEach { dataState ->
-                    profileDetail.postValue(dataState.profile)
-                }
+            val userDetail = EntityMapper.convertToProfileDetail(result.first())
+            profileDetail.postValue(userDetail)
             Log.i("SettingViewModel", "getProfileDetail: ${result.first().profile}")
         }
     }
         /* update profile detaile */
-        fun updateProfileDetail(profileDetail: UserDetail) {
+        fun updateProfileDetail(profileDetail: ProfileDetail) {
             val profileMap: HashMap<String, String> = HashMap()
             profileMap["profilePhoto"] = profileDetail.profilePhoto.toString()
             profileMap["name"] = profileDetail.name.toString()

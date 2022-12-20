@@ -14,10 +14,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import org.lniranjan.chatclone.databinding.ActivitySettingBinding
-import org.lniranjan.chatclone.modal.UserDetail
-import org.lniranjan.chatclone.ui.fragment.LoginFragment
+import org.lniranjan.chatclone.modal.ProfileDetail
 import org.lniranjan.chatclone.ui.viewmodel.SettingViewModel
-import org.lniranjan.domain.entity.User
 
 @AndroidEntryPoint
 class SettingActivity : AppCompatActivity() {
@@ -36,8 +34,8 @@ class SettingActivity : AppCompatActivity() {
         //get user info from intent and use the id from firebase for testing purposes only
         val userId = intent.getStringExtra("userId")?:"T520rsExXWdb5K4LqcHK21Mdtjo2"
         loadAndSetUserIinfo(userId.toString())
-        setObserver()
         setOnClickListenerForProfilePhoto()
+        setObserver()
     }
 
     private fun loadAndSetUserIinfo(userId: String?) {
@@ -47,8 +45,10 @@ class SettingActivity : AppCompatActivity() {
 
 
     private fun setObserver() {
+        Log.i("SettingActivity", "setObserver: observed ")
         viewModel._profileDetail.observe(this, {
-            bindind.profileDetail = UserDetail(it.userName, it.profilePic, it.bio)
+            Log.i("SettingActivity", "setObserver: $it")
+            bindind.profileDetail = ProfileDetail(it.name, it.profilePhoto, it.bio)
         })
     }
 
@@ -67,7 +67,7 @@ class SettingActivity : AppCompatActivity() {
         }
         bindind.updateSettingsBtn.setOnClickListener {
             viewModel.updateProfileDetail(
-                UserDetail( bindind.setUserName.text.toString(),
+                ProfileDetail( bindind.setUserName.text.toString(),
                 bindind.setBio.text.toString())
             )
         }

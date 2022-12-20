@@ -3,7 +3,7 @@
     <data>
         <variable
             name="profileDetail"
-            type="org.lniranjan.chatclone.modal.UserDetail" />
+            type="org.lniranjan.chatclone.modal.ProfileDetail" />
     </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/setUserName"
         android:inputType="textMultiLine"
+        android:text="@{profileDetail.name}"
         android:hint="UserName"
         android:textAlignment="center"
         android:drawableStart="@drawable/edit_profile"
@@ -49,6 +50,7 @@
         android:id="@+id/setBio"
         android:inputType="textMultiLine"
         android:hint="Hey! I am available now"
+        android:text="@{profileDetail.bio}"
         android:textAlignment="center"
         android:drawableStart="@drawable/edit_status"
         android:drawableLeft="@drawable/edit_profile"

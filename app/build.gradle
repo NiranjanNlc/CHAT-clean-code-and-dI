@@ -70,4 +70,8 @@ dependencies {
     kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.28-alpha'
     debugImplementation "androidx.fragment:fragment-testing:1.3.0-alpha08"
 
+    // Image Loading libary
+    implementation glide.core
+    kapt glide.core
+
 }

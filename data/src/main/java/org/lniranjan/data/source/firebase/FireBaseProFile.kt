@@ -19,7 +19,7 @@ class FireBaseProFile  @Inject constructor(
         return flow {
             val result = rootRef.child("users")
                 .child(userid)
-                .setValue(profileDetail.toString())
+                .setValue(profileDetail)
             result.await()
             if (result.isSuccessful) {
                 emit(true)

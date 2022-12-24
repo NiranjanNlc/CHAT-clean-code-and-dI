@@ -16,11 +16,15 @@
         android:theme="@style/Theme.ChatClone"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="false">
+            android:name=".ui.activity.WelcomeActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.AuthActivity"
@@ -33,10 +37,10 @@
         <activity
             android:name=".ui.activity.SettingActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 

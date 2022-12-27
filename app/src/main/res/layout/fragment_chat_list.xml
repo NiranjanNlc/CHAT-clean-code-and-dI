@@ -6,13 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ChatListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="@string/hello_blank_fragment"
-        android:layout_gravity="center"
-        android:background="@drawable/background"/>
+        tools:listitem="@layout/chat_item"/>
 
 </FrameLayout>

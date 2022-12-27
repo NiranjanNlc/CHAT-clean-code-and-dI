@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.ContactListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contact_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:listitem="@layout/contact_item"/>
 
 </FrameLayout>

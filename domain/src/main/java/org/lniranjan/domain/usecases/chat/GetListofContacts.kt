@@ -11,7 +11,7 @@ class GetListofContacts @Inject constructor(
     configuration: Configuration,
     private val chatting: Chatting
 ) : UseCase<GetListofContacts.Request, GetListofContacts.Response>(configuration) {
-    data class Request(val user: User) : UseCase.Request
+    data class Request(val user: String) : UseCase.Request
     data class Response(val userList: List<User>) : UseCase.Response
 
     override suspend fun process(request:Request): Flow<Response> = chatting.getListOfUser(request.user.userId!!)

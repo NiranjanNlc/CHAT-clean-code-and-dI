@@ -1,6 +1,10 @@
 # Chat App
-An simple chat app to show my skillset in the android app
+### An simple chat app to show my skillset in the android app
 </br>
+<div align="center">
+<img align="center" width = "30%" height="600dp" src="https://user-images.githubusercontent.com/25600880/209935934-6c89b79d-f9ab-42d1-ad0b-26d73a29b920.jpg">
+</div>
+  </br>
 <div align="center">
   <sub>Built with ❤︎ by
   <a href="https://twitter.com/niranjannlc">Niranjan Lamichhane</a>  </sub>

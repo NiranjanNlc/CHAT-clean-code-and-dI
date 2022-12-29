@@ -19,11 +19,9 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:src="@drawable/profile_image"
-            app:civ_border_width="2dp"
             android:padding="2dp"
             android:layout_margin="4dp"
-            app:roundPercent="40"
-            app:civ_border_color="#FF000000"/>
+            app:roundPercent="40" />
 
         <LinearLayout
             android:layout_width="match_parent"

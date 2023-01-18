@@ -1,6 +1,5 @@
 package org.lniranjan.data.source.firebase
 
-import android.util.Log
 import org.lniranjan.domain.entity.Result as Result1
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.Flow
@@ -17,13 +16,13 @@ class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth
             firebaseAuth.signInWithEmailAndPassword(email, password)?.await()
                 ?.user?.let { User(userId = it.uid, mail = it.email!!) }
             ?.let {
-                Log.i("SignUpUseCase hjjj", "process: $it")
+                // Log.i("SignUpUseCase hjjj", "process: $it")
                 flow { emit(Result1.Success(it)) }
             }!!
         }
         catch (e:Exception)
         {
-            Log.e("FirebaseAuthenciation", "Error in FirebaseAuthenciation"+ e.message)
+            // Log.i("FirebaseAuthenciation", "Error in FirebaseAuthenciation"+ e.message)
             flow { emit(Result1.Error(UseCaseException.createFromThrowable(e))) }
         }
     }
@@ -44,15 +43,15 @@ class FirebaseAuthenciation @Inject constructor(  val firebaseAuth: FirebaseAuth
     }
 
     override suspend fun signUp(user: User): Flow<Result1<Any>> {
-        Log.i("SignUpUseCase", "process: $user")
+        // Log.i("SignUpUseCase", "process: $user")
         return try {
             firebaseAuth.createUserWithEmailAndPassword(user.mail, user.password).await()
                 .user?.let { User(userId = it.uid,mail = it.email!!) }
                 ?.let {
-                    Log.i("SignUpUseCase hjjj" , "process: $it")
+                    // Log.i("SignUpUseCase hjjj" , "process: $it")
                     flow { emit(Result1.Success(it)) } }!!
         } catch (e: Exception) {
-            Log.e("FirebaseAuthenciation", "Error in FirebaseAuthenciation"+ e.message)
+            // Log.e("FirebaseAuthenciation", "Error in FirebaseAuthenciation"+ e.message)
             flow { emit(Result1.Error(UseCaseException.createFromThrowable(e))) }
         }
     }

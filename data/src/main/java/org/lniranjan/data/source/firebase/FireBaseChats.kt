@@ -16,24 +16,30 @@ class FireBaseChats  @Inject constructor(
 ){
      suspend fun getListOfChats(uid: String): List<Chat>? {
          try {
-             return rootRef.child("chats").child(uid).get().await().
-             children.map { it.getValue(Chat::class.java)!! }.toList()
-
+             return rootRef.child("chats/$uid")
+                 .get()
+                 .await()
+                 .children
+                 .map { it.getValue(Chat::class.java)!! }
+                 .toList()
          }
          catch (e : Exception)
          {
-                  e.printStackTrace()
-               return   null
+             e.printStackTrace()
+             return   null
          }
     }
 
     suspend fun getListOfUser(uid: String): List<User> {
         return try {
-            rootRef.child("users").get().await().children.map { it.getValue(User::class.java)!! }
+            rootRef.child("users")
+                .get()
+                .await()
+                .children
+                .map { it.getValue(User::class.java)!! }
                 .filter {
                     it.userId != uid
-                }
-                .toList()
+                }.toList()
         } catch (e: Exception) {
             e.printStackTrace()
             emptyList()

@@ -44,6 +44,10 @@ buildscript {
                         storage: 'com.google.firebase:firebase-storage-ktx',
                         auth: 'com.google.firebase:firebase-auth-ktx'
                 ]
+                appwrite = [
+                        core: "io.appwrite:appwrite:0.10.0",
+                        android: "io.appwrite:appwrite-android:0.10.0"
+                ]
                 coroutines = [
                         core: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
                         android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}",

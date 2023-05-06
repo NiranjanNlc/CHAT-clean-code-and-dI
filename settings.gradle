@@ -16,3 +16,4 @@ rootProject.name = "ChatClone"
 include ':app'
 include ':domain'
 include ':data'
+include ':data-appwrite'

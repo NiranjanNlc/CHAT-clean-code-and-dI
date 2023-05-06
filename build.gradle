@@ -17,6 +17,7 @@ buildscript {
                         glide: "4.12.0",
                 ]
                 testing = [
+                        core: "androidx.test:core-ktx:${versions.androidtest}",
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
                         junit: "junit:junit:${versions.junit}",
                         espreso: "androidx.test.espresso:espresso-core:${versions.espreso}",
@@ -45,7 +46,7 @@ buildscript {
                         auth: 'com.google.firebase:firebase-auth-ktx'
                 ]
                 appwrite = [
-                        core: "io.appwrite:appwrite:0.10.0",
+                        core: "io.appwrite:sdk-for-android:2.0.0",
                         android: "io.appwrite:appwrite-android:0.10.0"
                 ]
                 coroutines = [

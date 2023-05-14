@@ -11,11 +11,16 @@ import org.mockito.MockedConstruction
 class Initiate {
 
     private lateinit var appContext: Context
+    private lateinit var client: Client
 
     @Before
     @Throws(Exception::class)
     fun setUp() {
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext()
+        client = Client(appContext)
+            .setEndpoint(PROJECT.endpoint)
+            .setProject(PROJECT.projectId)
+            .setSelfSigned(true)
     }
     @Test
     fun initiate() {

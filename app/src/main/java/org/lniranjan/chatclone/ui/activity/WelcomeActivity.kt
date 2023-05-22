@@ -3,11 +3,11 @@ package org.lniranjan.chatclone.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import org.lniranjan.chatclone.R
 import org.lniranjan.chatclone.databinding.ActivityWelcomeBinding
+import org.lniranjan.chatclone.ui.adapter.WelcomePagerAdapter
 
 @AndroidEntryPoint
 class WelcomeActivity : AppCompatActivity() {

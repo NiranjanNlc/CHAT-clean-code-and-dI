@@ -1,6 +1,5 @@
 package org.lniranjan.chatclone.ui.fragment
 
-import HiltTestActivity
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle

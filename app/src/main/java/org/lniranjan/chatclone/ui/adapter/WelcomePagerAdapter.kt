@@ -1,4 +1,4 @@
-package org.lniranjan.chatclone.ui.activity
+package org.lniranjan.chatclone.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

@@ -38,10 +38,15 @@ class FireBaseModule {
     }
 
     @Provides
+    fun provideFireBaseReference (database : FirebaseDatabase): DatabaseReference {
+        return database.reference
+    }
+
+    @Provides
     fun provideFireBaseProfile (
-        database : FirebaseDatabase ,
+        reference: DatabaseReference ,
     storageReference: StorageReference): FireBaseProFile {
-        return FireBaseProFile(database.reference,
+        return FireBaseProFile(reference,
                                     storageReference)
     }
 

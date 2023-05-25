@@ -22,10 +22,12 @@ class MessageViewModel @Inject constructor(
     val _messageList = MutableLiveData<List<MessageItem>>()
     val messageList: LiveData<List<MessageItem>>
         get() = _messageList
-    fun sendMessage(message: MessageItem)
+    fun sendMessage(newMessage: MessageItem)
     {
+        val currentMessages = _messageList.value.orEmpty().toMutableList()
+        currentMessages.add(newMessage)
+        _messageList.value = currentMessages
         viewModelScope.launch {
-
         }
     }
     fun updateMessage(message: MessageItem)
@@ -36,6 +38,7 @@ class MessageViewModel @Inject constructor(
     }
     fun getListOfMessage(message: MessageItem)
     {
+
         viewModelScope.launch {
 
         }

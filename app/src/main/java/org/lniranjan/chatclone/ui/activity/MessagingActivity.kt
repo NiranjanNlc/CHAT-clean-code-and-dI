@@ -10,7 +10,6 @@ import org.lniranjan.chatclone.databinding.ActivityMessagingBinding
 import org.lniranjan.chatclone.modal.MessageItem
 import org.lniranjan.chatclone.ui.adapter.MessageAdapter
 import org.lniranjan.chatclone.ui.viewmodel.MessageViewModel
-import org.lniranjan.domain.entity.Message
 
 @AndroidEntryPoint
 class MessagingActivity : AppCompatActivity() {

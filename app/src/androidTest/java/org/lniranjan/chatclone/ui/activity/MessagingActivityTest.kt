@@ -7,8 +7,8 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.runner.AndroidJUnit4
 import org.hamcrest.CoreMatchers
 import org.junit.Assert
 import org.junit.Assert.*
@@ -22,27 +22,27 @@ import org.lniranjan.chatclone.modal.MessageItem
 import org.lniranjan.chatclone.ui.viewmodel.MessageViewModel
 
 @RunWith(AndroidJUnit4::class)
-@LargeTest
 class MessagingActivityTest {
 
-        @Rule
-        @JvmField
-        val activityRule: ActivityScenarioRule<MessagingActivity> = ActivityScenarioRule(MessagingActivity::class.java)
-        private lateinit var recyclerView: RecyclerView
-        private lateinit var binding: ActivityMessagingBinding
-        private lateinit var adapter: RecyclerView.Adapter<*>
-        private lateinit var  viewModel: MessageViewModel
-        private lateinit var testMessages: MutableList<MessageItem>
+    @Rule
+    @JvmField
+    val activityRule: ActivityScenarioRule<MessagingActivity> =
+        ActivityScenarioRule(MessagingActivity::class.java)
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: ActivityMessagingBinding
+    private lateinit var adapter: RecyclerView.Adapter<*>
+    private lateinit var viewModel: MessageViewModel
+    private lateinit var testMessages: MutableList<MessageItem>
 
-        @Before
-        fun setUp() {
-            activityRule.scenario.onActivity {
-                binding = it.binding
-                recyclerView = binding.recyclerGchat
-                viewModel = it.viewModal
-                adapter = it.adapter
-            }
+    @Before
+    fun setUp() {
+        activityRule.scenario.onActivity {
+            binding = it.binding
+            recyclerView = it.binding.recyclerGchat
+            adapter = it.binding.recyclerGchat.adapter!!
+            viewModel = it.viewModal
         }
+    }
 
         @Test
         fun testRecyclerViewExists() {

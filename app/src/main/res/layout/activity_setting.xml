@@ -67,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/updateSettingsBtn"
-        android:text="Update"
+        android:text="Edit Profile"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
         android:textStyle="bold"

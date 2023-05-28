@@ -12,8 +12,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import org.lniranjan.chatclone.R
 import org.lniranjan.chatclone.databinding.ActivitySettingBinding
 import org.lniranjan.chatclone.modal.ProfileDetail
 import org.lniranjan.chatclone.ui.viewmodel.SettingViewModel
@@ -21,22 +23,21 @@ import org.lniranjan.chatclone.ui.viewmodel.SettingViewModel
 @AndroidEntryPoint
 class SettingActivity : AppCompatActivity() {
 
-    private lateinit var bindind: ActivitySettingBinding
-    private val viewModel by viewModels<SettingViewModel>()
+    lateinit var bindind: ActivitySettingBinding
+    val viewModel by viewModels<SettingViewModel>()
     private val REQUEST_PHOTO_PERMISSION = 1
     private var loadingImage = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcloudinary.com%2Fblog%2Feasy_image_loading_and_optimization_with_cloudinary_and_fresco&psig=AOvVaw2WgdiYXEK57EcYEJNpYopL&ust=1671607043091000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMil5dLTh_wCFQAAAAAdAAAAABAD"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindind = ActivitySettingBinding.inflate(layoutInflater)
-        setContentView(bindind.root)
+        bindind = DataBindingUtil.setContentView(this, R.layout.activity_setting)
         //  change the  title of the action bar
         supportActionBar?.title = " Update  the profile info"
         //get user info from intent and use the id from firebase for testing purposes only
-        val userId = intent.getStringExtra("userId")?:"T520rsExXWdb5K4LqcHK21Mdtjo2"
-        loadAndSetUserIinfo(userId.toString())
-        setOnClickListenerForProfilePhoto()
-        setObserver()
+//        val userId = intent.getStringExtra("userId")?:"T520rsExXWdb5K4LqcHK21Mdtjo2"
+//        loadAndSetUserIinfo(userId.toString())
+//        setOnClickListenerForProfilePhoto()
+//        setObserver()
     }
 
     private fun loadAndSetUserIinfo(userId: String?) {

@@ -26,11 +26,12 @@ class SettingActivity : AppCompatActivity() {
     lateinit var binding: ActivitySettingBinding
     val viewModel by viewModels<SettingViewModel>()
     var isEditMode: Boolean = false
+
     private val REQUEST_PHOTO_PERMISSION = 1
     private var loadingImage = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcloudinary.com%2Fblog%2Feasy_image_loading_and_optimization_with_cloudinary_and_fresco&psig=AOvVaw2WgdiYXEK57EcYEJNpYopL&ust=1671607043091000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMil5dLTh_wCFQAAAAAdAAAAABAD"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState) 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_setting)
         //  change the  title of the action bar
         supportActionBar?.title = " Update  the profile info"
@@ -59,6 +60,7 @@ class SettingActivity : AppCompatActivity() {
     private fun setEditMode() {
         binding.setUserName.isEnabled = isEditMode
         binding.setBio.isEnabled = isEditMode
+
     }
 
     private fun loadAndSetUserIinfo(userId: String?) {

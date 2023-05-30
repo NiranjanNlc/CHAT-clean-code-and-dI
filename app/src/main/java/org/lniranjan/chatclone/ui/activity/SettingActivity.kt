@@ -23,14 +23,16 @@ import org.lniranjan.chatclone.ui.viewmodel.SettingViewModel
 @AndroidEntryPoint
 class SettingActivity : AppCompatActivity() {
 
-    lateinit var bindind: ActivitySettingBinding
+    lateinit var binding: ActivitySettingBinding
     val viewModel by viewModels<SettingViewModel>()
+    var isEditMode: Boolean = false
+
     private val REQUEST_PHOTO_PERMISSION = 1
     private var loadingImage = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcloudinary.com%2Fblog%2Feasy_image_loading_and_optimization_with_cloudinary_and_fresco&psig=AOvVaw2WgdiYXEK57EcYEJNpYopL&ust=1671607043091000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCMil5dLTh_wCFQAAAAAdAAAAABAD"
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        bindind = DataBindingUtil.setContentView(this, R.layout.activity_setting)
+        super.onCreate(savedInstanceState) 
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_setting)
         //  change the  title of the action bar
         supportActionBar?.title = " Update  the profile info"
         //get user info from intent and use the id from firebase for testing purposes only
@@ -38,11 +40,32 @@ class SettingActivity : AppCompatActivity() {
 //        loadAndSetUserIinfo(userId.toString())
 //        setOnClickListenerForProfilePhoto()
 //        setObserver()
+        setEditMode()
+        binding.updateSettingsBtn.setOnClickListener {
+            toggleEditMode()
+        }
+    }
+
+    private fun toggleEditMode() {
+        isEditMode = !isEditMode
+        if (isEditMode) {
+            binding.updateSettingsBtn.text = "Save Profile"
+            setEditMode()
+        } else {
+            binding.updateSettingsBtn.text = "Edit Profile"
+            setEditMode()
+        }
+    }
+
+    private fun setEditMode() {
+        binding.setUserName.isEnabled = isEditMode
+        binding.setBio.isEnabled = isEditMode
+
     }
 
     private fun loadAndSetUserIinfo(userId: String?) {
         Log.i("SettingActivity", "loadAndSetUserIinfo: $userId")
-//        Glide.with(this).load(loadingImage).into(bindind.setProfileImage)
+//        Glide.with(this).load(loadingImage).into(binding.setProfileImage)
 //        viewModel.getProfileDetail(userId.toString())
     }
 
@@ -51,14 +74,14 @@ class SettingActivity : AppCompatActivity() {
         Log.i("SettingActivity", "setObserver: observed ")
         viewModel._profileDetail.observe(this, {
             Log.i("SettingActivity", "setObserver: $it")
-            bindind.profileDetail = ProfileDetail(it.name, it.profilePhoto, it.bio)
+            binding.profileDetail = ProfileDetail(it.name, it.profilePhoto, it.bio)
           loadingImage = it.profilePhoto.toString()
         })
     }
 
 
     private fun setOnClickListenerForProfilePhoto() {
-        bindind.setProfileImage.setOnClickListener {
+        binding.setProfileImage.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.READ_EXTERNAL_STORAGE
@@ -69,11 +92,11 @@ class SettingActivity : AppCompatActivity() {
                 selectImage()
             }
         }
-        bindind.updateSettingsBtn.setOnClickListener {
+        binding.updateSettingsBtn.setOnClickListener {
             viewModel.updateProfileDetail(
-                ProfileDetail(name = bindind.setUserName.text.toString(),
-                bio = bindind.setBio.text.toString(),
-                profilePhoto = bindind.profileDetail?.profilePhoto)
+                ProfileDetail(name = binding.setUserName.text.toString(),
+                bio = binding.setBio.text.toString(),
+                profilePhoto = binding.profileDetail?.profilePhoto)
             )
         }
     }
@@ -95,7 +118,7 @@ class SettingActivity : AppCompatActivity() {
                 val selectedImageUri = result.data?.data
                 if (selectedImageUri != null) {
                     viewModel.uploadProfileImage(selectedImageUri)
-                    bindind.setProfileImage.setImageURI(selectedImageUri)
+                    binding.setProfileImage.setImageURI(selectedImageUri)
                 }
             }
         }

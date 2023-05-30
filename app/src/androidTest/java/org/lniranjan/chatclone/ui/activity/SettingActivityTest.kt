@@ -33,7 +33,7 @@ class SettingActivityTest{
     fun setUp() {
         // Use the 'testing' Context
         activityRule.scenario.onActivity {
-            binding = it.bindind
+            binding = it.binding
 //            viewModel = it.viewModel
             activity = it
         }
@@ -154,7 +154,7 @@ class SettingActivityTest{
         // Exit edit mode
         Espresso.onView(ViewMatchers.withId(binding.updateSettingsBtn.id))
             .perform(ViewActions.click())
-
+        Thread.sleep(1000)
         // Verify that EditText fields are disabled
         Espresso.onView(ViewMatchers.withId(binding.setUserName.id))
             .check(ViewAssertions.matches(ViewMatchers.isNotEnabled()))

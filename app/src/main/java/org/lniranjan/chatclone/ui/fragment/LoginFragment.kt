@@ -129,4 +129,8 @@ class LoginFragment : Fragment() {
     private fun login(email: String, passw: String) {
             viewModel.login(Credentials(mail = email, password = passw))
     }
+
+  fun showNotImplementedMessage() {
+        requireContext().toast("Not implemented yet")
+    }
 }

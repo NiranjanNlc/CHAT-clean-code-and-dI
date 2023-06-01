@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Inspired from https://github.com/farida-techie/LoginPageUi-->
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="fragment"
             type="org.lniranjan.chatclone.ui.fragment.LoginFragment" />
     </data>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -279,21 +278,30 @@
                 android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
-                    android:src="@drawable/ic_facebook"
-                    android:layout_margin="10dp"
+                    android:id="@+id/facebookLogo"
                     android:layout_width="35dp"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:layout_margin="10dp"
+                    android:onClick="@{(v)-> fragment.showNotImplementedMessage()}"
+                    android:src="@drawable/ic_facebook" />
+
                 <ImageView
-                    android:src="@drawable/ic_google"
-                    android:layout_margin="10dp"
+                    android:id="@+id/googleLogo"
                     android:layout_width="35dp"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:layout_margin="10dp"
+                    android:onClick="@{(v)-> fragment.showNotImplementedMessage()}"
+                    android:src="@drawable/ic_google" />
+
                 <ImageView
-                    android:src="@drawable/ic_twitter"
-                    android:layout_margin="10dp"
+                    android:id="@+id/twitterLogo"
                     android:layout_width="35dp"
-                    android:layout_height="35dp"/>
+                    android:layout_height="35dp"
+                    android:layout_margin="10dp"
+                    android:onClick="@{(v)-> fragment.showNotImplementedMessage()}"
+                    android:src="@drawable/ic_twitter" />
 
 
             </LinearLayout>

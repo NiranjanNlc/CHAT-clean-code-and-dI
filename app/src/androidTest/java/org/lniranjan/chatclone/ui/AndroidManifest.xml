@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ChatClone"
         tools:targetApi="31">
+        <activity android:name=".ui.fragment.HiltTestActivity" />
         <activity
             android:name=".ui.activity.MessagingActivity"
             android:exported="true">

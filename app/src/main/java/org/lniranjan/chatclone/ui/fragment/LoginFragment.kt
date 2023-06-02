@@ -25,7 +25,7 @@ import org.lniranjan.chatclone.utils.toast
 class LoginFragment : Fragment() {
 
     private lateinit var bindind : FragmentLoginBinding 
-    private val viewModel by viewModels<AuthViewModel>()
+    val viewModel by viewModels<AuthViewModel>()
     val USERID: String = "userId"
  
     override fun onCreateView(

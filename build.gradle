@@ -4,7 +4,8 @@ buildscript {
     ext
             {
                 versions = [
-                        mockito  : "4.0.0",
+                        mockito  : "5.0.0",
+                        mockkito : "1.12.0",
                         junit   : "4.12",
                         junit5  : "5.7.2",
                         nav : "2.5.1",
@@ -19,6 +20,7 @@ buildscript {
                 ]
                 testing = [
                         core: "androidx.test:core-ktx:${versions.androidtest}",
+                        mockkito:"io.mockk:mockk-android:${versions.mockkito}",
                         mockito   : "org.mockito.kotlin:mockito-kotlin:${versions.mockito}",
                         junit: "junit:junit:${versions.junit}",
                         junit5: "org.junit.jupiter:junit-jupiter-api:${versions.junit5}",

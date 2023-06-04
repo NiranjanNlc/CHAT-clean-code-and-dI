@@ -50,7 +50,7 @@ dependencies {
     implementation project(path: ':data')
     testImplementation testing.junit
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+//    testImplementation 'org.junit.jupiter:junit-jupiter'
     //espresso
     androidTestImplementation testing.junit5
     androidTestRuntimeOnly testing.junit5engine
